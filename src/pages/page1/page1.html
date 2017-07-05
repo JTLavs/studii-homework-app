@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Homework</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+<ion-list-header color="light-green"><b>TOMORROW</b></ion-list-header>
+<p padding *ngIf="checkIfHomeworkTomorrow()" style="text-align:center;font-size:14px;">
+  No homework ! <br>You can relax tonight !<br>
+</p>
+<ion-item detail-push *ngFor="let work of tomorrowHomeworks" (click)="itemTapped($event, work)">
+	<ion-avatar item-left>
+    <img [src]="homeworkService.getSubjectImage(work.subject)" height="30px" width="30px">
+  </ion-avatar>
+	<p style="font-size:18px;">{{work.task}}</p>
+    <span *ngIf="work.status == 'Done'" item-right color="done"><ion-icon name="checkmark-circle"></ion-icon></span>
+    <span *ngIf="work.status == 'Not Complete'" item-right color="nDone"><ion-icon name="close-circle"></ion-icon></span>
+</ion-item>
+</ion-list>
+<ion-list>
+<ion-list-header color="light-green"><b>FUTURE</b></ion-list-header>
+<ion-item detail-push *ngFor="let work of homeworks" (click)="itemTapped($event, work)">
+	<ion-avatar item-left>
+    <img [src]="homeworkService.getSubjectImage(work.subject)" height="30px" width="30px">
+  </ion-avatar>
+	<p style="font-size:18px;">{{work.task}}</p>
+    <span *ngIf="work.status == 'Done'" item-right color="done"><ion-icon name="checkmark-circle"></ion-icon></span>
+    <span *ngIf="work.status == 'Not Complete'" item-right color="nDone"><ion-icon name="close-circle"></ion-icon></span>
+	<p style="font-size:12px;">Due on {{work.date}}</p>
+</ion-item>
+</ion-list>
+</ion-content>

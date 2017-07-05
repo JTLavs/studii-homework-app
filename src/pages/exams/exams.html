@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="purple">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Exams</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ <div *ngIf="checkIfAnyComplete()">
+  <ion-list>
+	<ion-list-header color="light-purple"><b>COMPLETED - (tap to remove)</b></ion-list-header>
+	<ion-item *ngFor="let work of completedExams">
+		<ion-avatar item-left>
+		<img [src]="theService.getSubjectImage(work.subject)" height="30px" width="30px">
+	  </ion-avatar>
+		<p style="font-size:18px;">{{ work.name }}</p>
+		<p style="font-size:12px;">Completed on {{work.date | date:'shortDate'}}</p>
+	</ion-item>
+	</ion-list>
+ </div>
+  <ion-list>
+  <ion-list-header color="light-purple"><b>UPCOMING</b> </ion-list-header>
+  <ion-item detail-push *ngFor="let work of exams" (click)="itemTapped($event, work)">
+  	<ion-avatar item-left>
+      <img [src]="getSubjectImage(work.subject)" height="30px" width="30px">
+    </ion-avatar>
+  	<p style="font-size:18px;">{{ work.name }}</p>
+  	<p style="font-size:12px;"> {{work.date | date:'shortDate'}}</p>
+  </ion-item>
+  </ion-list>
+</ion-content>
