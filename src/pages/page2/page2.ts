@@ -13,7 +13,7 @@ export class detailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
 			private homeworkService : Service, private alertCtrl : AlertController) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('work');
+    this.selectedItem = navParams.get('theWork');
 	}
 
 	updateExamStatus(selectedItem:any, topicName : string ) : void{

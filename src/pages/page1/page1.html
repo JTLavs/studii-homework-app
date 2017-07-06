@@ -8,30 +8,25 @@
 </ion-header>
 
 <ion-content>
+	<div *ngIf="checkIfHomeworkTomorrow()">
+		<ion-list>
+		<ion-list-header color="light-green"><b>TOMORROW</b></ion-list-header>
+			<ion-item detail-push *ngFor="let homework of tomorrowHomeworks" (click)="itemTapped($event, homework)">
+				<ion-avatar item-left>
+					<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+				</ion-avatar>
+				<p style="font-size:18px;">{{homework.task}}</p>
+			</ion-item>
+		</ion-list>
+</div>
 <ion-list>
-<ion-list-header color="light-green"><b>TOMORROW</b></ion-list-header>
-<p padding *ngIf="checkIfHomeworkTomorrow()" style="text-align:center;font-size:14px;">
-  No homework ! <br>You can relax tonight !<br>
-</p>
-<ion-item detail-push *ngFor="let work of tomorrowHomeworks" (click)="itemTapped($event, work)">
-	<ion-avatar item-left>
-    <img [src]="homeworkService.getSubjectImage(work.subject)" height="30px" width="30px">
-  </ion-avatar>
-	<p style="font-size:18px;">{{work.task}}</p>
-    <span *ngIf="work.status == 'Done'" item-right color="done"><ion-icon name="checkmark-circle"></ion-icon></span>
-    <span *ngIf="work.status == 'Not Complete'" item-right color="nDone"><ion-icon name="close-circle"></ion-icon></span>
-</ion-item>
-</ion-list>
-<ion-list>
-<ion-list-header color="light-green"><b>FUTURE</b></ion-list-header>
-<ion-item detail-push *ngFor="let work of homeworks" (click)="itemTapped($event, work)">
-	<ion-avatar item-left>
-    <img [src]="homeworkService.getSubjectImage(work.subject)" height="30px" width="30px">
-  </ion-avatar>
-	<p style="font-size:18px;">{{work.task}}</p>
-    <span *ngIf="work.status == 'Done'" item-right color="done"><ion-icon name="checkmark-circle"></ion-icon></span>
-    <span *ngIf="work.status == 'Not Complete'" item-right color="nDone"><ion-icon name="close-circle"></ion-icon></span>
-	<p style="font-size:12px;">Due on {{work.date}}</p>
-</ion-item>
+<ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
+	<ion-item detail-push *ngFor="let homework of homeworks" (click)="itemTapped($event, homework)">
+		<ion-avatar item-left>
+			<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+		</ion-avatar>
+		<p style="font-size:18px;">{{homework.task}}</p>
+		<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
+	</ion-item>
 </ion-list>
 </ion-content>

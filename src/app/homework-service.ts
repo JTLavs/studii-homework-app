@@ -23,8 +23,9 @@ export class Service
 	private NOT_COMPLETE : string = "Not Complete";
 	private PROFILE_NAME : string = "James"
 	private PROFILE_IMAGE : string = "avatarBoy"
-	private HOMEWORKS: Homework[];
-	private EXAMS : Exam[];
+	//private HOMEWORKS: Homework[];
+	//private EXAMS : Exam[];
+	private todaysDate : Date = new Date();
 
 	getHomeworks(): Promise<Homework[]>
 	{
@@ -32,6 +33,7 @@ export class Service
 		//for devices - return this.getWork(this.HOMEWORK_KEY);
 	}
 
+	//GET METHODS
 	getProfileName() : string{
 		return this.PROFILE_NAME
 		//for devices - return this.getWork("name")
@@ -40,13 +42,15 @@ export class Service
 		return this.PROFILE_IMAGE
 		//for devices - return this.getWork("image")
 	}
+	
+	//SET METHODS
 	setProfileName(theName : string){
 		this.PROFILE_NAME = theName;
-		this.saveWork("name", name);
+		//this.saveWork("name", name);
 	}
 	setProfileImage(theImage : string){
 		this.PROFILE_IMAGE = theImage;
-		this.saveWork("image", theImage);
+		///this.saveWork("image", theImage);
 	}
 	
 	countHomeworksBySubject(subjectName : string): number {
@@ -87,22 +91,6 @@ export class Service
 		subject.target = number
 	}
 
-	addSubject(subjectName : string){
-		var imageString = 'icon'+subjectName
-		if(subjectName.toLowerCase().includes('english')){
-			imageString = 'iconEnglish'
-		}else if(subjectName.toLowerCase().includes('maths')){
-			imageString = 'iconMaths'
-		}else if(subjectName.toLowerCase().includes('science')){
-			imageString = 'iconScience'
-		}
-		SUBJECTS.push(
-			{
-				name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0,
-				image : imageString}
-			)
-	}
-
 	removeSubject(subject : Subject)
 	{
 		this.deleteSubjectFromOtherItems(this.EXAM_KEY, EXAMS, subject.name)
@@ -122,14 +110,6 @@ export class Service
 		//this.saveWork(key, array)
 	}
 
-	addAllSubjects(subjects : Subject[])
-	{
-		for(var theSubject of subjects){
-			this.addSubject(theSubject.name)
-		}
-	}
-	
-
 	removeHomework(theHomework : Homework){
 		for(var homework of HOMEWORKS){
 			if(homework === theHomework){
@@ -138,13 +118,15 @@ export class Service
 		}
 		//this.saveWork(key, array)
 	}
-	removeExam(theExam : Exam){
-		for(var exam of EXAMS){
-			if(exam === theExam){
-					EXAMS.splice(EXAMS.indexOf(theExam,1))
+	removeExamsInPast(){
+		var i = EXAMS.length;
+		while(i--){
+			if(new Date(EXAMS[i].date) < this.todaysDate){
+				EXAMS.splice(i,1);
+				console.log('removed');
 			}
 		}
-		//this.saveWork(key, array)
+		//this.saveWork(key, array)	
 	}
 	removeClass(theClass : Class){
 		for(var aClass of CLASSES){
@@ -163,15 +145,6 @@ export class Service
 	  this.saveWork(this.EXAM_KEY, this.getExams());
 	}
 
-	addHomework(task : string, dueDate : string, description : string, subject : string)
-	{
-			HOMEWORKS.push(
-				{ task : task, subject : subject, date : dueDate,
-					details : description, image : this.getSubjectImage(subject)}
-			);
-
-			this.saveWork(this.HOMEWORK_KEY, HOMEWORKS);
-	}
 
 	getSubjectImage(subjectName : string){
 		for(var theSubject of SUBJECTS){
@@ -181,6 +154,18 @@ export class Service
 		}
 	}
 
+	//ADD METHODS
+	
+	addHomework(task : string, dueDate : string, description : string, subject : string)
+	{
+			HOMEWORKS.push(
+				{ task : task, subject : subject, date : dueDate,
+					details : description, image : this.getSubjectImage(subject)}
+			);
+
+			this.saveWork(this.HOMEWORK_KEY, HOMEWORKS);
+	}
+	
 	addExam(name : string, subject : string, date: string, stuffNeeded:string ,topics:Topics[])
 	{
 		EXAMS.push(
@@ -196,7 +181,30 @@ export class Service
 				{subject : subject, periods : periods, days: days, room : room,
 					color: color}
 			)
+	}
+		
+	addAllSubjects(subjects : Subject[])
+	{
+		for(var theSubject of subjects){
+			this.addSubject(theSubject.name)
 		}
+	}
+
+	addSubject(subjectName : string){
+		var imageString = 'icon'+subjectName
+		if(subjectName.toLowerCase().includes('english')){
+			imageString = 'iconEnglish'
+		}else if(subjectName.toLowerCase().includes('maths')){
+			imageString = 'iconMaths'
+		}else if(subjectName.toLowerCase().includes('science')){
+			imageString = 'iconScience'
+		}
+		SUBJECTS.push(
+			{
+				name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0,
+				image : imageString}
+			)
+	}
 
 	saveWork(key : string, arr : any){
 		//this.nativeStorage.setItem(key,arr)

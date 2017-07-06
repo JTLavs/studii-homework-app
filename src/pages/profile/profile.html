@@ -23,8 +23,7 @@
       </ion-avatar>
 		  <b>{{subject.name | uppercase}}</b> &middot; {{ this.getNumberOfHomeworks(subject.name) }}
 		  <span [color]="isAverageGreaterThanTarget(subject.totalPercentageScores,
-        subject.numberOfTests, subject.target)" item-right>
-        {{ calculateAverage(subject) }}%</span>
+        subject.numberOfTests, subject.target)" item-right><b>{{ calculateAverage(subject) }}%</b></span>
     </ion-item>
       <ion-item-options side="right">
       <button ion-button  color="orange" style="text-transform:none;font-size:14px;opacity:0.7" (click)="presentAddScorePrompt(subject)">

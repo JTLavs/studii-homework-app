@@ -16,10 +16,10 @@ export class myhomework implements OnInit{
   todaysDate : Date = new Date();
 
   constructor(public navCtrl: NavController,
-		private homeworkService : Service) {}
+		private theService : Service) {}
 
 	getHomeworks() : void{
-		this.homeworkService.getHomeworks().then(
+		this.theService.getHomeworks().then(
       homeworks => this.homeworks = homeworks).then(
         homeworks =>{
 		    var i = homeworks.length;
@@ -46,7 +46,11 @@ export class myhomework implements OnInit{
 	}
 
   checkIfHomeworkTomorrow(){
-    return this.tomorrowHomeworks.length == 0
+    return this.tomorrowHomeworks.length > 0
+  }
+  
+  getHomeworkImage(subject : string){
+	return this.theService.getSubjectImage(subject)
   }
   
 
@@ -57,7 +61,7 @@ export class myhomework implements OnInit{
 
 	itemTapped(event, work) {
 		this.navCtrl.push(detailPage, {
-		  work: work
+		  theWork: work
 		});
 	}
 }

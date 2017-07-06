@@ -10,6 +10,7 @@ import { TimeTable } from '../pages/timetable/timetable'
 import { Profile } from '../pages/profile/profile'
 import { Settings } from '../pages/settings/settings'
 import { SetupName } from '../pages/setup_name/setup_name'
+import { Service } from './homework-service'
 
 
 
@@ -26,7 +27,7 @@ export class MyApp {
   settingsPages: Array<{title: string, icon : string, component: any, color:string}>;
 
   constructor(public platform: Platform, private theSplashscreen : SplashScreen,
-    private keyboard : Keyboard) {
+    private keyboard : Keyboard, private theService : Service) {
     this.initializeApp(theSplashscreen);
 
   }
@@ -50,7 +51,6 @@ export class MyApp {
 
   initializeApp(splashscreen : SplashScreen) {
     this.platform.ready().then(() => {
-      //load data from storage here
       this.date  = new Date();
       this.setupPages();
       // used for an example of ngFor and navigation

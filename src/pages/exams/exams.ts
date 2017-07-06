@@ -12,46 +12,29 @@ import { Service } from '../../app/homework-service';
 })
 export class myexams implements OnInit{
 	exams : Exam[];
-	completedExams : Exam[] = [];
 	selectedExam : Exam;
 	todaysDate : Date = new Date();
 
   constructor(public navCtrl: NavController,
 		private theService : Service) {}
-
-	getExamsAndFilter() : void{
-		this.theService.getExams().then(
-		  exams => this.exams = exams).then(
-			exams =>{
-			var i = exams.length;
-				while(i--){
-				
-					var examDate = new Date(exams[i].date)	
-					if(examDate < this.todaysDate)
-					   {
-							  this.completedExams.push(exams[i])
-							  this.exams.splice(i, 1)
-					   }
-				}
-			})
+		
+	getAllExams(){
+		return this.theService.getExams().then(exams => this.exams = exams);
 	}
 
 	ngOnInit() : void
 	{
-		this.getExamsAndFilter();
+		this.getAllExams();
+		this.theService.removeExamsInPast();
 	}
 
   getSubjectImage(subjectName : string){
     return this.theService.getSubjectImage(subjectName)
   }
-  
-  checkIfAnyComplete(){
-	return this.completedExams.length > 0;
-  }
 
 	itemTapped(event, work) {
 		this.navCtrl.push(detailPage, {
-		  work: work
+		  theWork: work
 		});
 	}
 }
