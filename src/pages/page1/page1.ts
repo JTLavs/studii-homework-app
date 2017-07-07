@@ -28,7 +28,7 @@ export class myhomework implements OnInit{
   }
   
   sortHomeworks(){
-	this.sortingHelper.quickSort(this.theHomeworks, 0, this.theHomeworks.length - 1)
+	this.theHomeworks.sort(this.compare);
   }
   
   getHomeworkImage(subject : string){
@@ -68,5 +68,13 @@ export class myhomework implements OnInit{
 		this.navCtrl.push(detailPage, {
 		  theWork: work
 		});
+	}
+	
+	compare(a,b){
+		if(new Date(a.date) < new Date(b.date))
+			return -1;
+		if(new Date(a.date) > new Date(b.date))
+			return 1;
+		return 0;
 	}
 }

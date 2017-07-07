@@ -18,14 +18,14 @@ export class SortingHelper{
 	partition(items, left, right) {
 		var pivot   = new Date(items[Math.floor((right + left) / 2)].date), i = left, j = right;
 		while (i <= j) {
-			while (new Date(items[i]) < pivot) {
+			while (new Date(items[i]) > pivot) {
 				i++;
 			}
-			while (new Date(items[j]) > pivot) {
-				j--;
+			while (new Date(items[j]) < pivot) {
+				j++;
 			}
 			if (i <= j) {
-				this.swap(items, j, i);
+				this.swap(items, i, j);
 				i++;
 				j--;
 			}

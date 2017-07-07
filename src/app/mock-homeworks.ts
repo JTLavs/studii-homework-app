@@ -4,13 +4,13 @@ import { Exam } from './exam'
 import { Class } from './class'
 
 export const HOMEWORKS: Homework[] = [
-	{task : 'Read page 5', subject : 'Science', date : '01/01/01', details : 'Read page 5 of Science textbook to learn about the digestive system.',
+	{task : 'Read page 5', subject : 'Science', date : '07/09/01', details : 'Read page 5 of Science textbook to learn about the digestive system.',
 	image : 'iconScience'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '01/01/01', details : 'Answer questions 1-10 on algebraic expressions',
+	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/09/01', details : 'Answer questions 1-10 on algebraic expressions',
 	image : 'iconMaths'},
-	{task : 'Read page 5', subject : 'Science', date : '07/06/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
+	{task : 'Read page 5', subject : 'Science', date : '07/10/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
 	image : 'iconScience'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/06/17', details : 'Answer questions 1-10 on algebraic expressions',
+	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/10/17', details : 'Answer questions 1-10 on algebraic expressions',
 	image : 'iconMaths'}
 	
 ]
