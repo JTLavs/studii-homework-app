@@ -27,9 +27,9 @@ export class Service
 	//private EXAMS : Exam[];
 	private todaysDate : Date = new Date();
 
-	getHomeworks(): Promise<Homework[]>
+	getHomeworks(): Homework[]
 	{
-		return Promise.resolve(HOMEWORKS);
+		return HOMEWORKS;
 		//for devices - return this.getWork(this.HOMEWORK_KEY);
 	}
 

@@ -14,6 +14,7 @@ import { TimeTable } from '../pages/timetable/timetable'
 import { Settings } from '../pages/settings/settings'
 import { Service } from './homework-service'
 import { SetupSubjects } from '../pages/setup_subjects/setup_subjects'
+import { SortingHelper } from './SortingHelper'
 
 
 @NgModule({
@@ -45,6 +46,6 @@ import { SetupSubjects } from '../pages/setup_subjects/setup_subjects'
   SetupName,
   SetupSubjects
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Service, SplashScreen, Keyboard]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Service, SplashScreen, Keyboard, SortingHelper]
 })
 export class AppModule {}

@@ -21,7 +21,7 @@
 </div>
 <ion-list>
 <ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
-	<ion-item detail-push *ngFor="let homework of homeworks" (click)="itemTapped($event, homework)">
+	<ion-item detail-push *ngFor="let homework of theHomeworks" (click)="itemTapped($event, homework)">
 		<ion-avatar item-left>
 			<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
 		</ion-avatar>
