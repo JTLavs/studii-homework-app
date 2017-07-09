@@ -25,7 +25,7 @@ export class myexams implements OnInit{
 	ngOnInit() : void
 	{
 		this.getAllExams();
-		this.theService.removeExamsInPast();
+		this.theService.removeExamsOrHomeworkInPast('EXAMS');
 	}
 
   getSubjectImage(subjectName : string){

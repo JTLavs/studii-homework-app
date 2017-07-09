@@ -23,14 +23,19 @@ export class Service
 	private NOT_COMPLETE : string = "Not Complete";
 	private PROFILE_NAME : string = "James"
 	private PROFILE_IMAGE : string = "avatarBoy"
-	//private HOMEWORKS: Homework[];
 	//private EXAMS : Exam[];
 	private todaysDate : Date = new Date();
-
-	getHomeworks(): Homework[]
-	{
-		return HOMEWORKS;
-		//for devices - return this.getWork(this.HOMEWORK_KEY);
+	private tomorrowHomeworks : Homework[] = [];
+	private upcomingHomeworks : Homework[] = [];
+	
+	getUpcomingHomeworks() : Homework[]{
+		console.log("CALLED" + this.upcomingHomeworks.length)
+		return this.upcomingHomeworks;
+	}
+	
+	getTomorrowsHomeworks() : Homework[]{
+		console.log("CALLED" +  this.tomorrowHomeworks.length)
+		return this.tomorrowHomeworks;
 	}
 
 	//GET METHODS
@@ -111,19 +116,14 @@ export class Service
 	}
 
 	removeHomework(theHomework : Homework){
-		for(var homework of HOMEWORKS){
-			if(homework === theHomework){
-					HOMEWORKS.splice(HOMEWORKS.indexOf(theHomework,1))
-			}
-		}
+		HOMEWORKS.splice(HOMEWORKS.indexOf(theHomework), 1)
 		//this.saveWork(key, array)
 	}
-	removeExamsInPast(){
-		var i = EXAMS.length;
+	removeExamsOrHomeworkInPast(array : any){
+		var i = array.length;
 		while(i--){
-			if(new Date(EXAMS[i].date) < this.todaysDate){
-				EXAMS.splice(i,1);
-				console.log('removed');
+			if(new Date(array[i].date) < this.todaysDate){
+				array.splice(i,1);
 			}
 		}
 		//this.saveWork(key, array)	
@@ -213,4 +213,28 @@ export class Service
 	getWork(key : string){
 		//this.nativeStorage.getItem(key);
 	}
+	
+  filterHomeworks(){
+ 	var i = HOMEWORKS.length;
+	while(i--){
+			
+	var theHomeworkDate = new Date(HOMEWORKS[i].date)	
+	if((
+	   (theHomeworkDate.getDate()  - this.todaysDate.getDate() == 1) &&
+		 theHomeworkDate.getMonth() == this.todaysDate.getMonth()))
+	   {
+		this.tomorrowHomeworks.push(HOMEWORKS[i])
+	   }
+	else if((
+		(theHomeworkDate.getDate() == 28 && theHomeworkDate.getMonth() == 3) ||
+			theHomeworkDate.getDate() == 30 || theHomeworkDate.getDate() == 31)
+			&& this.todaysDate.getDate() == 1)
+		{
+		  this.tomorrowHomeworks.push(HOMEWORKS[i])
+		}
+	else{
+		this.upcomingHomeworks.push(HOMEWORKS[i]);
+	}
+	}
+ }
 }

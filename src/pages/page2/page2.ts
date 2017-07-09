@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Service } from '../../app/homework-service';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'detail-page',
@@ -11,13 +12,13 @@ export class detailPage {
   selectedItem: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-			private homeworkService : Service, private alertCtrl : AlertController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('theWork');
+			private theService : Service, private alertCtrl : AlertController, private events : Events) {
+			
+		this.selectedItem = navParams.get('theWork');
 	}
 
 	updateExamStatus(selectedItem:any, topicName : string ) : void{
-		this.homeworkService.updateExamStatus(this.selectedItem, topicName);
+		this.theService.updateExamStatus(this.selectedItem, topicName);
 	}
 
 	updateHomeworkStatus():void
@@ -27,7 +28,8 @@ export class detailPage {
 		subTitle : `(This will remove the homework)`,
 		buttons: [
 				{ text: 'Yes', handler: () => {
-				this.homeworkService.removeHomework(this.selectedItem)
+				this.theService.removeHomework(this.selectedItem)
+				this.events.publish('Homework Deleted', this.selectedItem)
 				this.navCtrl.pop();
 				}
 			}, { text: 'No', role: 'cancel'}],

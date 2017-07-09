@@ -8,30 +8,26 @@
 </ion-header>
 
 <ion-content>
-	<div *ngIf="checkIfHomeworkTomorrow()">
-		<ion-list>
+	<ion-list *ngIf="checkIfHomeworkTomorrow()">
 		<ion-list-header color="light-green"><b>TOMORROW</b></ion-list-header>
-			<ion-item detail-push *ngFor="let homework of tomorrowHomeworks" (click)="itemTapped($event, homework)">
-				<ion-avatar item-left>
-					<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
-				</ion-avatar>
-				<p style="font-size:18px;">{{homework.task}}</p>
-			</ion-item>
-		</ion-list>
-	</div>
-<div *ngIf="!checkIfAnyHomeworks()">
-<ion-list>
-<ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
-	<ion-item detail-push *ngFor="let homework of theHomeworks" (click)="itemTapped($event, homework)">
-		<ion-avatar item-left>
-			<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
-		</ion-avatar>
-		<p style="font-size:18px;">{{homework.task}}</p>
-		<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
-	</ion-item>
-</ion-list>
-</div>
-<div *ngIf="checkIfAnyHomeworks()">
+		<ion-item detail-push *ngFor="let homework of tomorrowHomeworks" (click)="itemTapped($event, homework)">
+			<ion-avatar item-left>
+				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+			</ion-avatar>
+			<p style="font-size:18px;">{{homework.task}}</p>
+		</ion-item>
+	</ion-list>
+	<ion-list *ngIf="!checkIfNoHomeworks()">
+		<ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
+		<ion-item detail-push *ngFor="let homework of upcomingHomeworks" (click)="itemTapped($event, homework)">
+			<ion-avatar item-left>
+				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+			</ion-avatar>
+			<p style="font-size:18px;">{{homework.task}}</p>
+			<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
+		</ion-item>
+	</ion-list>
+<div *ngIf="checkIfNoHomeworks()">
 	<p>No homeworks to do.</p>
 </div>
 </ion-content>

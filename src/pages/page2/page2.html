@@ -16,7 +16,7 @@
   		<span *ngIf="selectedItem.name">{{selectedItem.name}}</span>
   		</b>
   	</h2>
-    <img [src]="homeworkService.getSubjectImage(selectedItem.subject)"
+    <img [src]="theService.getSubjectImage(selectedItem.subject)"
     height="100px" width="100px" style="vertical-align:middle;"/>
 	<p style="padding-bottom:5px;"><span style="font-size:18px;"><b>{{selectedItem.date | date: 'mediumDate'}}</b></span></p>
   </div>
