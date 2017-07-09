@@ -69,10 +69,14 @@ let alert = this.alertCtrl.create({
   ],
   buttons: [
     { text: 'Add', handler: data => {
-        var oldTarget = subject.target
-        this.subjectsService.updateTarget(subject, data.target)
-        this.showOKAlert('Target updated', 'You updated '+subject+
-          ' target from '+oldTarget +' % to '+data.target)
+		if(typeof(data.target) =='number' && data.target > 0){
+			var oldTarget = subject.target
+			this.subjectsService.updateTarget(subject, data.target)
+			this.showOKAlert('Target updated', 'You updated '+subject+
+			  ' target from '+oldTarget +' % to '+data.target)
+		  }else{
+			this.showOKAlert('Error', 'You must enter a number between 0 and 100');
+		  }
       }
     }, { text: 'Cancel', role: 'cancel'}],
     enableBackdropDismiss : true,

@@ -22,6 +22,10 @@ export class myhomework implements OnInit{
 	getHomeworks() : void{
 		this.theHomeworks = this.theService.getHomeworks()
 	}
+	
+	checkIfAnyHomeworks(){
+	return !this.checkIfHomeworkTomorrow() && this.theHomeworks.length == 0;
+	}
 
   checkIfHomeworkTomorrow(){
     return this.tomorrowHomeworks.length > 0
@@ -71,10 +75,6 @@ export class myhomework implements OnInit{
 	}
 	
 	compare(a,b){
-		if(new Date(a.date) < new Date(b.date))
-			return -1;
-		if(new Date(a.date) > new Date(b.date))
-			return 1;
-		return 0;
+		return new Date(a.date).getTime() - new Date(b.date).getTime();
 	}
 }

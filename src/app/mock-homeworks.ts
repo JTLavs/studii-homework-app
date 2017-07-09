@@ -4,11 +4,11 @@ import { Exam } from './exam'
 import { Class } from './class'
 
 export const HOMEWORKS: Homework[] = [
-	{task : 'Read page 5', subject : 'Science', date : '07/09/01', details : 'Read page 5 of Science textbook to learn about the digestive system.',
+	{task : 'Read page 5', subject : 'Science', date : '08/09/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
 	image : 'iconScience'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/09/01', details : 'Answer questions 1-10 on algebraic expressions',
+	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/11/17', details : 'Answer questions 1-10 on algebraic expressions',
 	image : 'iconMaths'},
-	{task : 'Read page 5', subject : 'Science', date : '07/10/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
+	{task : 'Read page 5', subject : 'Science', date : '07/22/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
 	image : 'iconScience'},
 	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/10/17', details : 'Answer questions 1-10 on algebraic expressions',
 	image : 'iconMaths'}
@@ -40,32 +40,7 @@ export const CLASSES: Class[] = [
 	]
 
 export const EXAMS: Exam[] = [
-	{name: 'GCSE Biology', subject : 'Science', date : '01/01/01',
-	topics: [
-			{topicName : 'Digestive System', status : 'Not Complete' },
-			{topicName :  'Cells', status : 'Not Complete'},
-			{topicName :  'Plants', status : 'Not Complete' },
-			{topicName :  'Animals', status : 'Not Complete' }
-		],
-	stuffNeeded: 'Calculator'},
 
-	{name : 'GCSE Chemistry', subject : 'Science', date : '01/01/01',
-	topics : [
-			{topicName : 'Digestive System', status : 'Not Complete' },
-			{topicName :  'Cells', status : 'Not Complete'},
-			{topicName :  'Plants', status : 'Not Complete' },
-			{topicName :  'Animals', status : 'Not Complete' }
-			],
-	stuffNeeded: 'Calculator'},
-	
-		{name : 'GCSE Chemistry', subject : 'Science', date : '02/02/22',
-	topics : [
-			{topicName : 'Digestive System', status : 'Not Complete' },
-			{topicName :  'Cells', status : 'Not Complete'},
-			{topicName :  'Plants', status : 'Not Complete' },
-			{topicName :  'Animals', status : 'Not Complete' }
-			],
-	stuffNeeded: 'Calculator'}
 ]
 
 export const SUBJECTS: Subject[] = [

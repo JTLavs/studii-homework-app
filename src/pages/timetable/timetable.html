@@ -8,7 +8,8 @@
 </ion-header>
 <ion-content>
     <ion-list-header color="light">
-		<ion-select [(ngModel)]="theDay" name="day" style="padding-left:10px;">
+		<p style="color:black;padding::10px;" item-right><b>{{ currentDate.getTime() | date:'shortTime'}}</b></p>
+		<ion-select [(ngModel)]="theDay" name="day" style="padding-left:10px;width:100px;">
 			<ion-option value="Monday">Monday</ion-option>
 			<ion-option value="Tuesday">Tuesday</ion-option>
 			<ion-option value="Wednesday">Wednesday</ion-option>
@@ -29,8 +30,8 @@
         <div *ngIf="theDay == period.day">
          <p style="font-size:14px;" color="{{ class.color }}">
            <ion-icon name="time"></ion-icon> {{period.startTime}} - {{period.endTime}}
-         <span *ngIf="currentClassMarker(theDay, period.startTime, period.endTime)"
-         item-right color="nDone"><ion-icon name="arrow-dropleft"></ion-icon></span></p>
+         <span item-right *ngIf="currentClassMarker(theDay, period.startTime, period.endTime)"
+         item-right color="nDone">current class</span></p>
         </div>
         </div>
 

@@ -18,7 +18,8 @@
 				<p style="font-size:18px;">{{homework.task}}</p>
 			</ion-item>
 		</ion-list>
-</div>
+	</div>
+<div *ngIf="!checkIfAnyHomeworks()">
 <ion-list>
 <ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
 	<ion-item detail-push *ngFor="let homework of theHomeworks" (click)="itemTapped($event, homework)">
@@ -29,4 +30,8 @@
 		<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
 	</ion-item>
 </ion-list>
+</div>
+<div *ngIf="checkIfAnyHomeworks()">
+	<p>No homeworks to do.</p>
+</div>
 </ion-content>

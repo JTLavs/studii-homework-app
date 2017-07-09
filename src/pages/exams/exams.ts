@@ -11,7 +11,7 @@ import { Service } from '../../app/homework-service';
   providers : [Service]
 })
 export class myexams implements OnInit{
-	exams : Exam[];
+	exams : Exam[] = [];
 	selectedExam : Exam;
 	todaysDate : Date = new Date();
 
@@ -30,6 +30,10 @@ export class myexams implements OnInit{
 
   getSubjectImage(subjectName : string){
     return this.theService.getSubjectImage(subjectName)
+  }
+  
+  checkIfExamsExist(){
+	return (this.exams.length > 0)
   }
 
 	itemTapped(event, work) {

@@ -10,7 +10,7 @@ import { Service } from '../../app/homework-service';
   providers : [Service]
 })
 export class TimeTable implements OnInit{
-  classes : Class[];
+  classes : Class[] = [];
   selectedClass : Class;
   theDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   theDay : string;
@@ -31,8 +31,9 @@ export class TimeTable implements OnInit{
       if(this.theDay == 'Saturday' || this.theDay == 'Sunday')
       {
           this.theDay = 'Monday';
-      }
-    }
+     
+	  }
+	}
 
   getClasses() : void{
     this.theService.getClasses().then(
@@ -40,14 +41,12 @@ export class TimeTable implements OnInit{
   }
 
   currentClassMarker(day, periodStart, periodEnd){
-    periodStart = periodStart.split(':')
-    periodEnd = periodEnd.split(':')
-    if(periodEnd[1] == '00')
-    {
-      periodEnd[1] = '60'
-    }
-    return ((periodStart[0] <= this.currentHours && periodStart[1] <= this.currentMinute)
-            && (this.currentHours <= periodEnd[0] && this.currentMinute <= periodEnd[1]))
+	periodStart = periodStart.split(':')
+	periodEnd = periodEnd.split(':')
+    var periodStartTime = new Date(2017, 1, 1, periodStart[0], periodEnd[1], 0, 0).getTime()
+	var periodEndTime = new Date(2017, 1, 1, 11, periodEnd[0], periodEnd[1], 0).getTime()
+	var currentTime = this.currentDate.getTime();
+	return (periodStartTime <= currentTime && currentTime <= periodEndTime)
   }
 
   ngOnInit() : void
