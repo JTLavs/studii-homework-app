@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar color="light-orange">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>studiiX</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-scroll scrollY="true" align="center">
+		<div class="subject" *ngFor="let subject of subjects" style="padding-top:20px;margin:0 auto;border-bottom:1px solid gray;">
+			<img [src]="getSubjectImage(subject.name)" style="vertical-align:middle;"/>
+			<p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
+		</div>
+	</ion-scroll>
+</ion-content>

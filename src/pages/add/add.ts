@@ -54,33 +54,6 @@ export class AddItem implements OnInit{
     this.topicInput.setFocus();
   }
 
-  addClassPeriods()
-  {
-	if(this.periodEnd < this.periodStart){
-		this.showAlert('Could not add class', 'End time is before start time of class.')
-	}else{
-		this.theDays.push(this.periodDay)
-		this.thePeriods.push(
-			{startTime : this.periodStart, endTime : this.periodEnd, day : this.periodDay}
-		);
-		this.periodStart = ""
-		this.periodEnd = ""
-	}
-
-  }
-
-  addClass(){
-    this.service.addClass(
-      this.subject,
-      this.thePeriods,
-      this.theDays,
-      this.theRoom,
-      'red'
-    )
-	
-	this.showAlert('Class Added to Timetable', "You added "+ this.subject + ' class')
-  }
-
   showAlert(title : string, subTitle : string){
     let alert = this.alertCtrl.create({
     title: title,
@@ -100,10 +73,6 @@ export class AddItem implements OnInit{
       this.subject
     );
     this.showAlert("Homework Added", "You added" + this.task);
-  }
-  classValidate(){
-    return (this.thePeriods.length == 0 || this.subject==""
-    || this.theRoom =="")
   }
   homeworkValidate(){
     return (this.homeworkDetails == "" || this.subject == "" || this.task == "")

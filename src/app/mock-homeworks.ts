@@ -1,43 +1,13 @@
 import { Homework } from './homework'
 import { Subject } from './homework'
 import { Exam } from './exam'
-import { Class } from './class'
 
 export const HOMEWORKS: Homework[] = [
-	{task : 'Read page 5', subject : 'Science', date : '08/09/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
-	image : 'iconScience'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/11/17', details : 'Answer questions 1-10 on algebraic expressions',
-	image : 'iconMaths'},
-	{task : 'Read page 5', subject : 'Science', date : '07/22/17', details : 'Read page 5 of Science textbook to learn about the digestive system.',
-	image : 'iconScience'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/10/17', details : 'Answer questions 1-10 on algebraic expressions',
-	image : 'iconMaths'}
-	
+	{task : 'Read page 5', subject : 'Science', date : '08/09/17', details : 'Read page 5 of Science textbook to learn about the digestive system.'},
+	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/11/17', details : 'Answer questions 1-10 on algebraic expressions'},
+	{task : 'Read page 5', subject : 'Science', date : '07/22/17', details : 'Read page 5 of Science textbook to learn about the digestive system.'},
+	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/10/17', details : 'Answer questions 1-10 on algebraic expressions'}	
 ]
-
-export const CLASSES: Class[] = [
-	{subject : 'Science',
-	periods :
-	[
-		{day : 'Monday', startTime : '9:00', endTime : '10:00'},
-		{day : 'Monday', startTime : '13:00', endTime : '13:00'},
-		{day : 'Tuesday', startTime : '10:05', endTime : '11:35'},
-		{day : 'Wednesday', startTime : '15:00', endTime : '15:30'},
-		{day : 'Wednesday', startTime : '18:30', endTime : '19:00'}
-	],
-	days : ['Monday', 'Tuesday', 'Wednesday'],
-	room : 'A1', color:'blue'
-	},
-
-	{subject : 'Maths',
-	periods :
-	[
-	{day : 'Monday', startTime : '10:05', endTime : '10:30'},
-	],
-	days : ['Monday'],
-	room : 'A1', color:'red'
-	}
-	]
 
 export const EXAMS: Exam[] = [
 

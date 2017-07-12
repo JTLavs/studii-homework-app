@@ -10,11 +10,11 @@ import { myexams } from '../pages/exams/exams'
 import { detailPage } from '../pages/page2/page2'
 import { AddItem } from '../pages/add/add'
 import { Profile } from '../pages/profile/profile'
-import { TimeTable } from '../pages/timetable/timetable'
 import { Settings } from '../pages/settings/settings'
 import { Service } from './homework-service'
 import { SetupSubjects } from '../pages/setup_subjects/setup_subjects'
-import { SortingHelper } from './SortingHelper'
+import { Studiix } from '../pages/studiix/studiix'
+
 
 
 @NgModule({
@@ -23,12 +23,12 @@ import { SortingHelper } from './SortingHelper'
     myhomework,
     detailPage,
 	AddItem,
-	TimeTable,
 	myexams,
 	Profile,
   Settings,
   SetupName,
-  SetupSubjects
+  SetupSubjects,
+  Studiix
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -39,13 +39,13 @@ import { SortingHelper } from './SortingHelper'
     myhomework,
     detailPage,
 	AddItem,
-	TimeTable,
 	myexams,
 	Profile,
   Settings,
   SetupName,
-  SetupSubjects
+  SetupSubjects,
+  Studiix
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Service, SplashScreen, Keyboard, SortingHelper]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Service, SplashScreen, Keyboard]
 })
 export class AppModule {}

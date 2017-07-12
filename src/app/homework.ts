@@ -3,7 +3,6 @@ export class Homework {
 	subject : string;
 	date : string;
 	details : string;
-	image : string;
 }
 
 export class Subject {

@@ -45,14 +45,15 @@ export class Profile implements OnInit{
   presentAddScorePrompt(subject : Subject) {
   let alert = this.alertCtrl.create({
     title: 'Add score for '+subject.name,
-    inputs: [
-      { name: 'score', placeholder: 'Score (%)' }
-    ],
+    inputs: [{ name: 'score', placeholder: 'Score (in percentage %)' }],
     buttons: [
-
       { text: 'Add', handler: data => {
-          this.subjectsService.addScoreToSubject(subject, data.score)
-          this.showOKAlert('Score Added', data.score +'% added to '+subject.name)
+		if(this.isNumberValid(data.score)){
+			this.subjectsService.addScoreToSubject(subject, data.score)
+			this.showOKAlert('Score Added', data.score +'% added to '+subject.name)
+		}else{
+			this.showOKAlert('Error', 'You must enter a number between 0 and 100');
+		}
         }
       },
       { text: 'Cancel', role: 'cancel'}]
@@ -60,30 +61,29 @@ export class Profile implements OnInit{
   alert.present();
 }
 
-presentTargetPrompt(subject : Subject) {
-let alert = this.alertCtrl.create({
-  title: `Update `+subject.name +` target`,
-  subTitle : `Current target : `+subject.target,
-  inputs: [
-    { name: 'target', placeholder: 'Target percentage (%)' }
-  ],
-  buttons: [
-    { text: 'Add', handler: data => {
-		if(typeof(data.target) =='number' && data.target > 0){
-			var oldTarget = subject.target
-			this.subjectsService.updateTarget(subject, data.target)
-			this.showOKAlert('Target updated', 'You updated '+subject+
-			  ' target from '+oldTarget +' % to '+data.target)
-		  }else{
-			this.showOKAlert('Error', 'You must enter a number between 0 and 100');
-		  }
-      }
-    }, { text: 'Cancel', role: 'cancel'}],
-    enableBackdropDismiss : true,
-    cssClass : '.alert'
-  });
-  alert.present();
-}
+	presentTargetPrompt(subject : Subject) {
+		let alert = this.alertCtrl.create({
+		  title: `Update `+subject.name +` target`,
+		  subTitle : `Current target : `+subject.target,
+		  inputs: [
+			{ name: 'target', placeholder: 'Target percentage (%)' }],
+		  buttons: [
+			{ text: 'Add', handler: data => {
+				if(this.isNumberValid(data.target)){
+					var oldTarget = subject.target
+					this.subjectsService.updateTarget(subject, data.target)
+					this.showOKAlert('Target updated', 'You updated '+subject.name+
+					  ' target from '+oldTarget +' % to '+data.target+'%')
+				  }else{
+					this.showOKAlert('Error', 'You must enter a number between 0 and 100');
+				  }
+			  }
+			}, { text: 'Cancel', role: 'cancel'}],
+			enableBackdropDismiss : true,
+			cssClass : '.alert'
+		  });
+		  alert.present();
+	}
 
 removeSubject(subject : Subject) {
 let alert = this.alertCtrl.create({
@@ -124,6 +124,10 @@ let alert = this.alertCtrl.create({
       return "green"
     }
       return "red"
+  }
+  
+  isNumberValid(number){
+	return (!(isNaN(number)) && (number >=0 && number <=100))
   }
 
 	ngOnInit() : void{

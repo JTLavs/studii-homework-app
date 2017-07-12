@@ -60,82 +60,32 @@
 			<ion-label stacked>Exam Date: </ion-label>
 			 <ion-datetime
 			 displayFormat="DD MMM" pickerFormat="DD/MMM" [(ngModel)]="date"
-			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec"
-			 name="exam-date"></ion-datetime>
+			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="exam-date"></ion-datetime>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Stuff Needed: </ion-label>
-			<ion-input name="supplies" [(ngModel)]="stuffNeeded"
-      placeholder="eg.Calculator"></ion-input>
+			<ion-input name="supplies" [(ngModel)]="stuffNeeded" placeholder="eg.Calculator"></ion-input>
 		</ion-item>
-    <ion-grid style="margin-left:15px;border-bottom:1px solid #ddd;">
-      <ion-row>
-      <ion-col col-12 style="padding:0px;position:initial">
-        <ion-label stacked>What topics need learned?</ion-label>
-      </ion-col>
-      </ion-row>
-      <ion-row>
-      <ion-col col-5 style="padding:0;position:initial">
-        <ion-input #topicInput type="text" placeholder="eg. Atoms"
-          [(ngModel)]="topicName" name="topicName"></ion-input>
-      </ion-col>
-      <ion-col col-7 style="position:initial">
-        <button ion-button small color="none" (click)="addTopicsForExam()"
-        style="box-shadow:none;border:1px solid #ddd;text-transform:none;">
-          Add topic</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+		<ion-grid style="margin-left:15px;border-bottom:1px solid #ddd;">
+			<ion-row>
+				  <ion-col col-12 style="padding:0px;position:initial">
+					<ion-label stacked>What topics need learned?</ion-label>
+				  </ion-col>
+			  </ion-row>
+			  <ion-row>
+				  <ion-col col-5 style="padding:0;position:initial">
+					<ion-input #topicInput type="text" placeholder="eg. Atoms"
+					  [(ngModel)]="topicName" name="topicName"></ion-input>
+				  </ion-col>
+				  <ion-col col-7 style="position:initial">
+					<button ion-button small color="none" (click)="addTopicsForExam()"
+					style="box-shadow:none;border:1px solid #ddd;text-transform:none;">
+					  Add topic</button>
+				  </ion-col>
+			</ion-row>
+		</ion-grid>
 		<div style="text-align:center;">
 			<button (click)="addExam()" ion-button color="red" style="margin-top:10px;padding:20px;">Add</button>
 		</div>
 	</ion-list>
-  <ion-list *ngIf="type=='class'">
-    <ion-list-header color="light-orange" style="font-weight:bold;">Enter class information</ion-list-header>
-    <ion-item>
-      <ion-label stacked>Subject</ion-label>
-      <ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name}}">{{theSubject.name}}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Room</ion-label>
-      <ion-input type="text" name="room" [(ngModel)]="theRoom" placeholder="eg. A1"></ion-input>
-    </ion-item>
-    <ion-list style="margin:0 auto;margin-top:10px;border:1px dashed #dddddd;width:95%">
-      <ion-list-header no-lines color="light-orange" style="font-weight:bold;">What days and times?</ion-list-header>
-	  <p padding>Add multiple periods to a class and when you are done click add at the bottom</p>
-      <ion-item>
-          <ion-label stacked>Period Start</ion-label>
-          <ion-datetime placeholder="hh : mm"
-          displayFormat="HH mm" pickerFormat="HH/mm" [(ngModel)]="periodStart"
-          name="periodStart"></ion-datetime>
-      </ion-item>
-      <ion-item>
-          <ion-label stacked>Period End</ion-label>
-          <ion-datetime placeholder="hh : mm"
-          displayFormat="HH mm" pickerFormat="HH/mm" [(ngModel)]="periodEnd"
-          name="periodEnd"></ion-datetime>
-      </ion-item>
-      <ion-item>
-          <ion-label stacked>Day</ion-label>
-          <ion-select name="periodDay" [(ngModel)]="periodDay" placeholder="Select day...">
-            <ion-option value="Monday">Monday</ion-option>
-            <ion-option value="Tuesday">Tuesday</ion-option>
-            <ion-option value="Wednesday">Wednesday</ion-option>
-            <ion-option value="Thursday">Thursday</ion-option>
-            <ion-option value="Friday">Friday</ion-option>
-          </ion-select>
-      </ion-item>
-      <ion-item>
-          <button ion-button small color="none" (click)="addClassPeriods()"
-          style="box-shadow:none;border:1px solid #ddd;text-transform:none;">
-            Add period</button>
-      </ion-item>
-    </ion-list>
-    <div style="text-align:center;">
-      <button (click)="addClass()" [disabled]="classValidate()"
-      ion-button color="red" style="margin-top:10px;padding:20px;">Add</button>
-    </div>
-  </ion-list>
 </ion-content>
