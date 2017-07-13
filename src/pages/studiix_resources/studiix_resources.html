@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar color="light-orange">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{theSubject}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<div *ngFor="let resource of resources">
+			<ion-list-header color="light-green"><b>{{resource.topic}}</b></ion-list-header>
+			<ion-item no-padding *ngFor="let link of resource.links" detail-push>
+				<p style="font-size:18px;padding-left:20px;">{{link.title}}</p>
+			</ion-item>
+		</div>
+	</ion-list>
+</ion-content>

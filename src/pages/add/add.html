@@ -12,7 +12,6 @@
 		<ion-select [(ngModel)]="type" name="type" placeholder="Select type to add...">
 			<ion-option value="hmework">Homework</ion-option>
 			<ion-option value="exam">Exam</ion-option>
-      <ion-option value="class">Class</ion-option>
 		</ion-select>
 	</ion-item>
 	<ion-list *ngIf="type == 'hmework'">
@@ -30,18 +29,15 @@
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Due Date:</ion-label>
-			 <ion-datetime color="orange" [(ngModel)]="date"
-			 displayFormat="DD MMM" pickerFormat="DD/MMM"
-			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec"
-			 name="due-date"></ion-datetime>
+			 <ion-datetime color="orange" [(ngModel)]="date" displayFormat="DD MMM" pickerFormat="DD/MMM" 
+			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="due-date"></ion-datetime>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Details: </ion-label>
-			<ion-input placeholder="Read pg 5 of textbook about Atoms"
-      [(ngModel)]="homeworkDetails" name="homeworkDetails"></ion-input>
+			<ion-input placeholder="Read pg 5 of textbook about Atoms" [(ngModel)]="homeworkDetails" name="homeworkDetails"></ion-input>
 		</ion-item>
 		<div style="text-align:center;">
-			<button ion-button (click)="addHomework()" color="red" style="margin-top:10px;padding:20px;">Add</button>
+			<button ion-button (click)="addHomework()" [disabled]="homeworkValidate()" color="red" style="margin-top:10px;padding:20px;">Add</button>
 		</div>
 	</ion-list>
 	<ion-list *ngIf="type == 'exam'">

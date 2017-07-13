@@ -18,10 +18,8 @@ export class myhomework implements OnInit{
 
   constructor(public navCtrl: NavController, private theService : Service, public events : Events) {
 		this.events.subscribe('Homework Deleted', (theHomework)=> {
-			console.log('event called');
 			this.removeHomework(theHomework)
 		})
-		console.log("CALLED")
 	}
 
 	getHomeworks(){
@@ -57,6 +55,7 @@ export class myhomework implements OnInit{
 	
 	ngOnInit() : void
 	{
+		this.theService.removeHomeworkInPast();
 		this.theService.filterHomeworks();
 		this.getHomeworks();
 		this.sortHomeworks();

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Service } from '../../app/homework-service';
 import { Subject } from '../../app/homework';
-import { AlertController } from 'ionic-angular'
+import { AlertController } from 'ionic-angular';
+import { StudiixResources } from '../../pages/studiix_resources/studiix_resources';
 
 @Component({
   selector: 'studiix',
@@ -15,7 +16,7 @@ export class Studiix implements OnInit{
   constructor(public navCtrl: NavController, private theService : Service, private alertCtrl : AlertController) {}
 
 	getSubjects(){
-		this.theService.getSubjects().then(subjects => this.subjects = subjects);
+		this.subjects = this.theService.getSubjectsWithResources();
 	}
   
 	getSubjectImage(subject : string){
@@ -26,16 +27,17 @@ export class Studiix implements OnInit{
 		this.getSubjects()
 			let alert = this.alertCtrl.create({
 			title: 'studiiX',
-			subTitle: 'Here you will find resources and materials gathered from the internet about your subjects.\n\nJust choose a subject to expand your knowledge and explore.',
+			subTitle: 'Here you will find the subjects with resources and materials gathered from the internet.\n\n'+
+					  'Just choose a subject to expand your knowledge and explore.',
 			buttons: ['OK'],
 			cssClass : 'alert'
 		  });
 		alert.present();
 	}
 
-	itemTapped(event, work) {
-	//	this.navCtrl.push(detailPage, {
-		//  theWork: work
-		//});
+	itemTapped(event, subject) {
+		this.navCtrl.push(StudiixResources, {
+		  subjectName: subject
+		});
 	}
 }

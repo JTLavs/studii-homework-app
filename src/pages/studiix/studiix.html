@@ -3,15 +3,16 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>studiiX</ion-title>
+    <ion-title><span style="font-family:Permanent Marker;
+	     text-shadow: 1px 1px 2px black;" color="none">stucateX</span></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 	<ion-scroll scrollY="true" align="center">
-		<div class="subject" *ngFor="let subject of subjects" style="padding-top:20px;margin:0 auto;border-bottom:1px solid gray;">
-			<img [src]="getSubjectImage(subject.name)" style="vertical-align:middle;"/>
-			<p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
-		</div>
+			<div class="subject" *ngFor="let subject of subjects" (click)="itemTapped($event, subject.name)" style="padding-top:20px;margin:0 auto;border-bottom:1px solid gray;">
+				<img [src]="getSubjectImage(subject.name)" style="vertical-align:middle;"/>
+				<p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
+			</div>
 	</ion-scroll>
 </ion-content>

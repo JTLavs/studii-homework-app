@@ -12,3 +12,14 @@ export class Subject {
 	target : number;
 	image : string;
 }
+
+export class Link{
+	href : string;
+	title : string;
+}
+
+export class Resource {
+	subject : string;
+	topic : string;
+	links : Link[];
+}

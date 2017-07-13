@@ -14,6 +14,7 @@ import { Settings } from '../pages/settings/settings'
 import { Service } from './homework-service'
 import { SetupSubjects } from '../pages/setup_subjects/setup_subjects'
 import { Studiix } from '../pages/studiix/studiix'
+import { StudiixResources } from '../pages/studiix_resources/studiix_resources'
 
 
 
@@ -28,7 +29,8 @@ import { Studiix } from '../pages/studiix/studiix'
   Settings,
   SetupName,
   SetupSubjects,
-  Studiix
+  Studiix,
+  StudiixResources
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -44,7 +46,8 @@ import { Studiix } from '../pages/studiix/studiix'
   Settings,
   SetupName,
   SetupSubjects,
-  Studiix
+  Studiix,
+  StudiixResources
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Service, SplashScreen, Keyboard]
 })

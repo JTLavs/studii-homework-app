@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Homework } from './homework';
-import { Exam } from './exam';
-import { Topics } from './exam';
-import { Subject } from './homework';
-import { EXAMS } from './mock-homeworks';
-import { HOMEWORKS } from './mock-homeworks';
-import { SUBJECTS } from './mock-homeworks';
+import { Homework, Resource, Subject } from './homework';
+import { Exam, Topics } from './exam';
+import { EXAMS, HOMEWORKS, SUBJECTS, RESOURCES } from './mock-homeworks';
 import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
@@ -22,6 +18,8 @@ export class Service
 	private todaysDate : Date = new Date();
 	private tomorrowHomeworks : Homework[] = [];
 	private upcomingHomeworks : Homework[] = [];
+	private subjectsWithResources : Subject[] = [];
+	
 	
 	getUpcomingHomeworks() : Homework[]{
 		return this.upcomingHomeworks;
@@ -29,6 +27,15 @@ export class Service
 	
 	getTomorrowsHomeworks() : Homework[]{
 		return this.tomorrowHomeworks;
+	}
+	
+	getSubjectsWithResources(){
+		for(var subject of SUBJECTS){
+			if(this.getNumberOfResourcesOnSubject(subject.name)){
+				this.subjectsWithResources.push(subject);
+			}
+		}
+		return this.subjectsWithResources;
 	}
 
 	//GET METHODS
@@ -39,6 +46,27 @@ export class Service
 	getProfileImage() : string{
 		return this.PROFILE_IMAGE
 		//for devices - return this.getWork("image")
+	}
+	
+	getResourcesForSubject(subjectName : string){
+		var associatedRecources : Resource[] = [];
+		for(var resource of RESOURCES){
+			if(resource.subject == subjectName){
+				associatedRecources.push(resource)
+				console.log('in if')
+			}
+		}
+		console.log(associatedRecources)
+		return associatedRecources;
+	}
+	
+	getNumberOfResourcesOnSubject(subjectName : string){
+		for(var aResource of RESOURCES){
+			if(aResource.subject == subjectName){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	//SET METHODS
@@ -105,11 +133,22 @@ export class Service
 		HOMEWORKS.splice(HOMEWORKS.indexOf(theHomework), 1)
 		//this.saveWork(key, array)
 	}
-	removeExamsOrHomeworkInPast(array : any){
-		var i = array.length;
+	
+	removeExamsInPast(){
+		var i = EXAMS.length;
 		while(i--){
-			if(new Date(array[i].date) < this.todaysDate){
-				array.splice(i,1);
+			if(new Date(EXAMS[i].date) < this.todaysDate){
+				EXAMS.splice(i,1);
+			}
+		}
+		//this.saveWork(key, array)	
+	}
+	
+	removeHomeworkInPast(){
+		var i = HOMEWORKS.length;
+		while(i--){
+			if(new Date(HOMEWORKS[i].date) < this.todaysDate){
+				HOMEWORKS.splice(i,1);
 			}
 		}
 		//this.saveWork(key, array)	

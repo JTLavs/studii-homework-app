@@ -25,12 +25,6 @@ export class AddItem implements OnInit{
   private topicName : string;
   private stuffNeeded : string;
 
-  private theRoom : string;
-  private periodStart : string;
-  private periodEnd : string;
-  private periodDay : string;
-  private theDays : string[] = [];
-  private thePeriods : Period[] = [];
 
   constructor(private service : Service,
     private alertCtrl: AlertController){this.service = service;}
@@ -74,15 +68,14 @@ export class AddItem implements OnInit{
     );
     this.showAlert("Homework Added", "You added" + this.task);
   }
+  
   homeworkValidate(){
-    return (this.homeworkDetails == "" || this.subject == "" || this.task == "")
+    return (this.homeworkDetails != "" || this.subject != "" || this.task != "")
   }
 
   addExam()
   {
-    this.service.addExam(
-      this.examName, this.subject, this.date, this.stuffNeeded, this.theTopics
-    );
+    this.service.addExam(this.examName, this.subject, this.date, this.stuffNeeded, this.theTopics);
     this.showAlert("Exam added", this.examName);
     this.theTopics = []
 
