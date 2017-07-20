@@ -14,7 +14,7 @@
 			<ion-avatar item-left>
 				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
 			</ion-avatar>
-			<p style="font-size:18px;">{{homework.task}}</p>
+			<p style="font-size:18px;">{{homework.details}}</p>
 		</ion-item>
 	</ion-list>
 	<ion-list *ngIf="!checkIfNoHomeworks()">
@@ -23,7 +23,7 @@
 			<ion-avatar item-left>
 				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
 			</ion-avatar>
-			<p style="font-size:18px;">{{homework.task}}</p>
+			<p style="font-size:18px;">{{homework.details}}</p>
 			<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
 		</ion-item>
 	</ion-list>

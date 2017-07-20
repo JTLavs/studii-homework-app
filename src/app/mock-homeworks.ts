@@ -1,39 +1,40 @@
-import { Homework } from './homework'
-import { Subject, Resource } from './homework'
-import { Exam } from './exam'
+import { Homework, Subject, Resource, Exam } from './homework'
 
 export const HOMEWORKS: Homework[] = [
-	{task : 'Read page 5', subject : 'Science', date : '08/09/17', details : 'Read page 5 of Science textbook to learn about the digestive system.'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/11/17', details : 'Answer questions 1-10 on algebraic expressions'},
-	{task : 'Read page 5', subject : 'Science', date : '07/22/17', details : 'Read page 5 of Science textbook to learn about the digestive system.'},
-	{task : 'Answer questions 1-10', subject : 'Maths', date : '07/10/17', details : 'Answer questions 1-10 on algebraic expressions'}	
+	{"subject" : "Science", "date" : "08/09/17", "details" : "Read page 5 of Science textbook to learn about the digestive system"},
+	{"subject" : "Maths", "date" : "07/11/17", "details" : "Answer questions 1-10 on algebraic expressions"},
+	{"subject" : "Science", "date" : "07/22/17", "details" : "Research Jupiter and its orbit"},
+	{"subject" : "Maths", "date" : "12/08/17", "details" : "Complete Matrices questions"}	
 ]
 
 export const EXAMS: Exam[] = [
+	{name : 'GCSE', subject: 'Science', date : '10/10/17', topics : []}
 
 ]
 
 export const RESOURCES : Resource[] = [
-		{subject : 'History', topic: 'Roman Empire', 
-			links : [{href: 'ancient.eu/Roman_Empire/', title : 'Roman Empire'}]
+		{"subject" : "History", "topic": "The Roman Empire", 
+			"links" : [{"website" : "ancient.eu", "href": "http://ancient.eu/Roman_Empire/" , "title" : "Roman Empire"}]
 		},
 		{subject : 'History', topic: 'World War 2', 
-			links : [ {href : 'world-war-2.info/', title : 'World War 2'}]
+			links : [{website : 'world-war-2.info', href : 'http://world-war-2.info/', title : 'World War 2'},
+					 {website : 'wikipedia.org', href: 'https://en.wikipedia.org/wiki/World_War_2', title : 'Wikipedia - World War 2'}]
 		},
 		{subject : 'History', topic: 'Ancient Egypt', 
-			links : [{href : 'ancientegypt.co.uk/menu.html', title : 'Ancient Egypt'}]},
-		{subject : 'Science', topic: 'Atoms', 
-			links : [{href : 'livescience.com/37206-atom-definition.html', title: 'What is an Atom?'},
-				{href : 'theguardian.com/science/life-and-physics/2011/mar/17/1', title : 'Electrons'},
-				{href : 'hyperphysics.phy-astr.gsu.edu/hbase/Particles/proton.html', title : 'Protons and Neutrons'}]},
+			links : [{website : 'ancientegypt.co.uk', href : 'ancientegypt.co.uk/menu.html', title : 'Ancient Egypt'},
+					 {website : 'ancient.eu', href : 'http://www.ancient.eu/egypt/', title : 'Ancient Egypt'}]},
+		{subject : 'Science', topic: 'Atoms and sub-atomic particles', 
+			links : [{website : 'livescience.com', href : 'https://www.livescience.com/37206-atom-definition.html', title: 'Atoms and their structure'}]},
 		{subject : 'Science', topic: 'Space', 
-			links : [{href : 'nineplanets.org/', title : 'Planets'},
-				{href : 'science.nasa.gov/astrophysics/focus-areas/black-holes', title : 'Black Holes'},
-				{href : 'space.com/57-stars-formation-classification-and-constellations.html', title : 'Stars'},
-				{href : 'nationalcoldwarexhibition.org/schools-colleges/national-curriculum/space-race/', title : 'The Space Race'}]},
+			links : [{website : 'nineplanets.org', href : 'https://nineplanets.org/', title : 'Our Solar System'},
+				     {website : 'science.nasa.gov', href : 'science.nasa.gov/astrophysics/focus-areas/black-holes', title : 'All about Black Holes'},
+				     {website : 'space.com', href : 'space.com/57-stars-formation-classification-and-constellations.html', title : 'Formation of stars'},
+				     {website : 'nationalcoldwarexhibition.org', href : 'nationalcoldwarexhibition.org/schools-colleges/national-curriculum/space-race/', title : 'The Space Race'}]},
 		{subject : 'Science', topic: 'Forces', 
-		 links : [{href : 'physicsclassroom.com/class/newtlaws/', title : 'Types of Forces & Newtons Laws'},
-				{href : 'livescience.com/37115-what-is-gravity.html', title : 'The Force of Gravity'}]}		
+		 links : [{website: 'physicsclassroom.com', href : 'physicsclassroom.com/class/newtlaws/', title : 'Types of Forces & Newtons Laws'},
+				  {website : 'livescience.com', href : 'livescience.com/37115-what-is-gravity.html', title : 'Gravitational Force'}]},
+		{subject : 'Science', topic : 'Elements & Compounds',
+		links : [{website: 'ptable.com', href : 'ptable.com', title: 'Interactive Periodic Table'}]}
 ]
 
 export const SUBJECTS: Subject[] = [

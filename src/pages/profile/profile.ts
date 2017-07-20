@@ -24,6 +24,10 @@ export class Profile implements OnInit{
   }
 
   calculateAverage(subject){
+	if(subject.numberOfTests <= 0)
+	{
+		return subject.numberOfTests.toPrecision(3)
+	}
     return (subject.totalPercentageScores / subject.numberOfTests).toPrecision(3)
   }
   

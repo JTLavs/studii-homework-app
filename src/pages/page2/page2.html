@@ -20,21 +20,18 @@
     height="100px" width="100px" style="vertical-align:middle;"/>
 	<p style="padding-bottom:5px;"><span style="font-size:18px;"><b>{{selectedItem.date | date: 'mediumDate'}}</b></span></p>
   </div>
-  <div>
-	<p style="border-bottom:1px dashed #f9f9f9;margin-bottom:15px;" text-wrap *ngIf="selectedItem.task"><span style="font-size:18px;"><b>{{selectedItem.task}}</b></span></p>
-
 	<p style="padding-bottom:5px;" text-wrap *ngIf="selectedItem.details"><span style="font-size:20px;">{{selectedItem.details}}</span></p>
-	<p style="border-bottom:1px dashed #f9f9f9;padding-bottom:5px;" *ngIf="selectedItem.stuffNeeded">What do you need?:<br><span style="font-size:18px;"><b>{{selectedItem.stuffNeeded}}</b></span></p>
-	<p ion-content style="font-size:16px;" *ngIf="selectedItem.topics">TOPICS TO REVISE
-    <br><span style="font-size:12px;">(click a topic to mark it as done)</span></p>
-  <ion-list *ngIf="selectedItem.topics" >
-  <ion-item *ngFor="let topic of selectedItem.topics" color="light" (click)="updateExamStatus(selectedItem, topic.topicName)">
-		  <b>{{topic.topicName}}</b>
-		  <span *ngIf="topic.status == 'Done'" color="done" item-right><ion-icon name="checkmark-circle"></ion-icon></span>
-		  <span *ngIf="topic.status == 'Not Complete'" color="nDone"item-right><ion-icon name="close-circle"></ion-icon></span>
-  </ion-item>
-</ion-list>
-</div>
-	<button *ngIf="!selectedItem.stuffNeeded" ion-button color="secondary" (click)="updateHomeworkStatus(selectedItem)" style="width:100%;padding:20px;">Complete</button>
+	<div *ngIf="selectedItem.topics">
+		<p style="font-size:16px;">TOPICS TO REVISE
+		<br><span style="font-size:12px;">(click a topic to mark it as done)</span></p>
+		<ion-list >
+			  <ion-item *ngFor="let topic of selectedItem.topics" color="light" (click)="updateExamStatus(selectedItem, topic.topicName)">
+					  <b>{{topic.topicName}}</b>
+					  <span ion-text *ngIf="topic.status == 'Done'" color="done" item-right><ion-icon name="checkmark-circle"></ion-icon></span>
+					  <span ion-text *ngIf="topic.status == 'Not Complete'" color="nDone"item-right><ion-icon name="close-circle"></ion-icon></span>
+			  </ion-item>
+		</ion-list>
+	</div>
+	<button *ngIf="!selectedItem.topics" ion-button color="secondary" (click)="updateHomeworkStatus(selectedItem)" style="width:100%;padding:20px;">Complete</button>
   </div>
 </ion-content>

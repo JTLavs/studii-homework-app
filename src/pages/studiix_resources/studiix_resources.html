@@ -11,8 +11,14 @@
 	<ion-list>
 		<div *ngFor="let resource of resources">
 			<ion-list-header color="light-green"><b>{{resource.topic}}</b></ion-list-header>
+			<ion-item no-padding  color="light" detail-push>
+				<p style="font-size:18px;padding-left:10px;">Books about {{resource.topic}}</p>
+			</ion-item>
 			<ion-item no-padding *ngFor="let link of resource.links" detail-push>
-				<p style="font-size:18px;padding-left:20px;">{{link.title}}</p>
+				<p style="padding-left:10px;" (click)="openLink(link.href)"><span style="font-size:18px;">{{link.title}}</span>
+				<br>
+				<span style="font-size:14px;">{{link.website}}</span>
+			</p>
 			</ion-item>
 		</div>
 	</ion-list>

@@ -47,15 +47,12 @@ export class myhomework implements OnInit{
 		if(this.upcomingHomeworks.indexOf(theHomework) > -1){
 				this.upcomingHomeworks.splice(this.upcomingHomeworks.indexOf(theHomework), 1)
 		}else{
-			console.log('removed')
 			this.tomorrowHomeworks.splice(this.tomorrowHomeworks.indexOf(theHomework), 1)
-			console.log(this.tomorrowHomeworks)
 		}
 	}
 	
 	ngOnInit() : void
 	{
-		this.theService.removeHomeworkInPast();
 		this.theService.filterHomeworks();
 		this.getHomeworks();
 		this.sortHomeworks();

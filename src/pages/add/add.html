@@ -8,18 +8,17 @@
 </ion-header>
 <ion-content>
 	<ion-item>
-		<ion-label stacked>Type: </ion-label>
+		<ion-label stacked>What do you want to add? </ion-label>
 		<ion-select [(ngModel)]="type" name="type" placeholder="Select type to add...">
 			<ion-option value="hmework">Homework</ion-option>
 			<ion-option value="exam">Exam</ion-option>
 		</ion-select>
 	</ion-item>
 	<ion-list *ngIf="type == 'hmework'">
-    <ion-list-header color="light-orange" style="font-weight:bold;">Enter Homework Info</ion-list-header>
+    <ion-list-header color="light-orange" style="font-weight:bold;">Enter homework Details</ion-list-header>
 		<ion-item>
-			<ion-label stacked>Task: </ion-label>
-			<ion-input type="text" [(ngModel)]="task" name="task"
-      placeholder="eg. Read Macbeth"></ion-input>
+			<ion-label stacked>Description: </ion-label>
+			<ion-input placeholder="eg. Read chapters 2 & 3 of Macbeth" [(ngModel)]="homeworkDetails" name="homeworkDetails"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Subject: </ion-label>
@@ -30,58 +29,43 @@
 		<ion-item>
 			<ion-label stacked>Due Date:</ion-label>
 			 <ion-datetime color="orange" [(ngModel)]="date" displayFormat="DD MMM" pickerFormat="DD/MMM" 
-			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="due-date"></ion-datetime>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Details: </ion-label>
-			<ion-input placeholder="Read pg 5 of textbook about Atoms" [(ngModel)]="homeworkDetails" name="homeworkDetails"></ion-input>
+			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="due-date" [min]="date"></ion-datetime>
 		</ion-item>
 		<div style="text-align:center;">
 			<button ion-button (click)="addHomework()" [disabled]="homeworkValidate()" color="red" style="margin-top:10px;padding:20px;">Add</button>
 		</div>
 	</ion-list>
 	<ion-list *ngIf="type == 'exam'">
-    <ion-list-header color="light-orange" style="font-weight:bold;">Enter exam information</ion-list-header>
-			<ion-item>
-			<ion-label stacked>Task: </ion-label>
-			<ion-input type="text" [(ngModel)]="examName" name="examName" placeholder="eg. Biology GCSE Exam"></ion-input>
+		<ion-list-header color="light-orange" style="font-weight:bold;">Enter exam details</ion-list-header>
+		<ion-item>
+			<ion-input type="text" [(ngModel)]="examName" name="examName" placeholder="Exam name eg. Biology GCSE Exam"></ion-input>
 		</ion-item>
 		<ion-item>
-			<ion-label stacked>Subject: </ion-label>
-      <ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name}}">{{theSubject.name}}</ion-option>
-      </ion-select>
+			<ion-label stacked>Choose subject: </ion-label>
+			<ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
+				<ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name}}">{{theSubject.name}}</ion-option>
+			</ion-select>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Exam Date: </ion-label>
-			 <ion-datetime
-			 displayFormat="DD MMM" pickerFormat="DD/MMM" [(ngModel)]="date"
-			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="exam-date"></ion-datetime>
-		</ion-item>
-		<ion-item>
-			<ion-label stacked>Stuff Needed: </ion-label>
-			<ion-input name="supplies" [(ngModel)]="stuffNeeded" placeholder="eg.Calculator"></ion-input>
+			 <ion-datetime displayFormat="DD MMM" pickerFormat="DD/MMM" [(ngModel)]="date"
+			 monthShortNames="Jan, Feb, Mar, Apr, May, June, July, Aug, Sept, Oct, Nov, Dec" name="exam-date" [min]="date"></ion-datetime>
 		</ion-item>
 		<ion-grid style="margin-left:15px;border-bottom:1px solid #ddd;">
 			<ion-row>
-				  <ion-col col-12 style="padding:0px;position:initial">
-					<ion-label stacked>What topics need learned?</ion-label>
-				  </ion-col>
-			  </ion-row>
-			  <ion-row>
-				  <ion-col col-5 style="padding:0;position:initial">
-					<ion-input #topicInput type="text" placeholder="eg. Atoms"
-					  [(ngModel)]="topicName" name="topicName"></ion-input>
-				  </ion-col>
-				  <ion-col col-7 style="position:initial">
-					<button ion-button small color="none" (click)="addTopicsForExam()"
-					style="box-shadow:none;border:1px solid #ddd;text-transform:none;">
-					  Add topic</button>
-				  </ion-col>
+				<ion-col col-12 style="padding:0px;position:initial"><ion-label stacked>What topics need learned?</ion-label></ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col col-5 style="padding:0;position:initial"><ion-input #topicInput type="text" placeholder="eg. Atoms" 
+					[(ngModel)]="topicName" name="topicName"></ion-input>
+				</ion-col>
+				<ion-col col-7 style="position:initial">
+					<button ion-button small color="none" (click)="addTopicsForExam()" style="box-shadow:none;border:1px solid #ddd;text-transform:none;">Add topic</button>
+				</ion-col>
 			</ion-row>
 		</ion-grid>
 		<div style="text-align:center;">
-			<button (click)="addExam()" ion-button color="red" style="margin-top:10px;padding:20px;">Add</button>
+			<button (click)="addExam()" [disabled]="examValidate()" ion-button color="red" style="margin-top:10px;padding:20px;">Add</button>
 		</div>
 	</ion-list>
 </ion-content>

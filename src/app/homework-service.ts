@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Homework, Resource, Subject } from './homework';
-import { Exam, Topics } from './exam';
+import { Homework, Resource, Subject, Exam, Topics } from './homework';
 import { EXAMS, HOMEWORKS, SUBJECTS, RESOURCES } from './mock-homeworks';
-import { NativeStorage } from '@ionic-native/native-storage';
+//import { NativeStorage } from '@ionic-native/native-storage';
 
 @Injectable()
 export class Service
@@ -12,7 +11,6 @@ export class Service
 	private EXAM_KEY : string = "theexams";
 	private SUBJECT_KEY : string = "thesubjects";
 	private DONE_STATUS : string = "Done";
-	private NOT_COMPLETE : string = "Not Complete";
 	private PROFILE_NAME : string = "James"
 	private PROFILE_IMAGE : string = "avatarBoy"
 	private todaysDate : Date = new Date();
@@ -30,7 +28,7 @@ export class Service
 	}
 	
 	getSubjectsWithResources(){
-		for(var subject of SUBJECTS){
+		for(let subject of SUBJECTS){
 			if(this.getNumberOfResourcesOnSubject(subject.name)){
 				this.subjectsWithResources.push(subject);
 			}
@@ -49,19 +47,17 @@ export class Service
 	}
 	
 	getResourcesForSubject(subjectName : string){
-		var associatedRecources : Resource[] = [];
-		for(var resource of RESOURCES){
+		let associatedRecources : Resource[] = [];
+		for(let resource of RESOURCES){
 			if(resource.subject == subjectName){
 				associatedRecources.push(resource)
-				console.log('in if')
 			}
 		}
-		console.log(associatedRecources)
 		return associatedRecources;
 	}
 	
 	getNumberOfResourcesOnSubject(subjectName : string){
-		for(var aResource of RESOURCES){
+		for(let aResource of RESOURCES){
 			if(aResource.subject == subjectName){
 				return true;
 			}
@@ -80,9 +76,8 @@ export class Service
 	}
 	
 	countHomeworksBySubject(subjectName : string): number {
-		var homeworkSubjectCount = 0;
-		
-		for(var aHomework of HOMEWORKS){
+		let homeworkSubjectCount = 0;
+		for(let aHomework of HOMEWORKS){
 			if(aHomework.subject == subjectName){
 				homeworkSubjectCount++;
 			}
@@ -92,6 +87,7 @@ export class Service
 
 	getExams(): Promise<Exam[]>
 	{
+		this.removeItemsInPast(EXAMS);
 		return Promise.resolve(EXAMS);
 		//for devices - return this.getWork(this.EXAM_KEY);
 	}
@@ -120,7 +116,7 @@ export class Service
 	}
 
 	deleteSubjectFromOtherItems(key: string, array : any, name : string){
-		var i = array.length;
+		let i = array.length;
 		while(i--){
 			if(array[i].subject == name){
 				array.splice(i,1)
@@ -134,21 +130,11 @@ export class Service
 		//this.saveWork(key, array)
 	}
 	
-	removeExamsInPast(){
-		var i = EXAMS.length;
+	removeItemsInPast(array : any[]){
+		let i = array.length;
 		while(i--){
-			if(new Date(EXAMS[i].date) < this.todaysDate){
-				EXAMS.splice(i,1);
-			}
-		}
-		//this.saveWork(key, array)	
-	}
-	
-	removeHomeworkInPast(){
-		var i = HOMEWORKS.length;
-		while(i--){
-			if(new Date(HOMEWORKS[i].date) < this.todaysDate){
-				HOMEWORKS.splice(i,1);
+			if(new Date(array[i].date) < this.todaysDate){
+				array.splice(i,1);
 			}
 		}
 		//this.saveWork(key, array)	
@@ -163,7 +149,7 @@ export class Service
 	}
 
 	getSubjectImage(subjectName : string){
-		var imageString = "icon"+subjectName;
+		let imageString = "icon"+subjectName;
 		if(subjectName.toLowerCase().includes('english')){
 			imageString = 'iconEnglish'
 		}else if(subjectName.toLowerCase().includes('maths')){
@@ -176,26 +162,26 @@ export class Service
 
 	//ADD METHODS
 	
-	addHomework(task : string, dueDate : string, description : string, subject : string){
-			HOMEWORKS.push({ task : task, subject : subject, date : dueDate, details : description});
+	addHomework(dueDate : string, description : string, subject : string){
+			HOMEWORKS.push({subject : subject, date : dueDate, details : description});
 			this.saveWork(this.HOMEWORK_KEY, HOMEWORKS);
 	}
 	
-	addExam(name : string, subject : string, date: string, stuffNeeded:string ,topics:Topics[]){
+	addExam(name : string, subject : string, date: string, topics:Topics[]){
 		EXAMS.push(
-			{ name :name, subject : subject, date : date, topics : topics, stuffNeeded:stuffNeeded});
-			this.saveWork(this.EXAM_KEY, this.getExams());
+			{ name :name, subject : subject, date : date, topics : topics});
+			//this.saveWork(this.EXAM_KEY, this.getExams());
 	}
 		
 	addAllSubjects(subjects : Subject[])
 	{
-		for(var theSubject of subjects){
+		for(let theSubject of subjects){
 			this.addSubject(theSubject.name)
 		}
 	}
 
 	addSubject(subjectName : string){
-		var imageURL = this.getSubjectImage(subjectName)
+		let imageURL = this.getSubjectImage(subjectName)
 		SUBJECTS.push({name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0, image : imageURL})
 	}
 
@@ -208,7 +194,7 @@ export class Service
 	}
 	
   filterHomeworks(){
- 	var i = HOMEWORKS.length;
+ 	let i = HOMEWORKS.length;
 	while(i--){		
 		var theHomeworkDate = new Date(HOMEWORKS[i].date)	
 		if(((theHomeworkDate.getDate()  - this.todaysDate.getDate() == 1) && theHomeworkDate.getMonth() == this.todaysDate.getMonth())){
@@ -221,5 +207,6 @@ export class Service
 			this.upcomingHomeworks.push(HOMEWORKS[i]);
 		}
 	}
+	this.removeItemsInPast(this.upcomingHomeworks);
  }
 }

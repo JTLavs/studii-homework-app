@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import { detailPage } from '../page2/page2';
-import { Exam } from '../../app/exam';
+import { Exam } from '../../app/homework';
 import { Service } from '../../app/homework-service';
 
 @Component({
@@ -24,7 +24,6 @@ export class myexams implements OnInit{
 
 	ngOnInit() : void
 	{
-		this.theService.removeExamsInPast();
 		this.getAllExams();
 	}
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Service } from '../../app/homework-service';
 import { Resource } from '../../app/homework';
 import { AlertController } from 'ionic-angular'
@@ -13,21 +13,19 @@ export class StudiixResources implements OnInit{
 	resources : Resource[] = [];
 	theSubject : string;
 
-  constructor(public navCtrl: NavController, private theService : Service, private navParams : NavParams) {}
+  constructor(private theService : Service, private navParams : NavParams) {}
 
 	getResources(){
 		this.theSubject = this.navParams.get('subjectName');
 		this.resources = this.theService.getResourcesForSubject(this.theSubject);
-		console.log(this.resources)
+	}
+	
+	openLink(url){
+		window.open(url, '_system', 'location=yes')
+		return false;
 	}
 	
 	ngOnInit() : void{
 		this.getResources();
-	}
-
-	itemTapped(event, work) {
-	//	this.navCtrl.push(detailPage, {
-		//  theWork: work
-		//});
 	}
 }

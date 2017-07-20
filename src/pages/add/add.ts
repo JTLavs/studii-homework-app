@@ -1,8 +1,6 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
 import { Service } from '../../app/homework-service';
-import { Topics } from '../../app/exam';
-import { Period } from '../../app/class';
-import { Subject } from '../../app/homework';
+import { Subject, Topics } from '../../app/homework';
 import { AlertController } from 'ionic-angular'
 
 @Component({
@@ -23,8 +21,6 @@ export class AddItem implements OnInit{
   private examName:string;
   private theTopics : Topics[] = [];
   private topicName : string;
-  private stuffNeeded : string;
-
 
   constructor(private service : Service,
     private alertCtrl: AlertController){this.service = service;}
@@ -41,9 +37,7 @@ export class AddItem implements OnInit{
 
   addTopicsForExam()
   {
-    this.theTopics.push(
-      {topicName : this.topicName, status : 'Not Complete'}
-    );
+    this.theTopics.push({topicName : this.topicName, status : 'Not Complete'});
     this.topicName = "";
     this.topicInput.setFocus();
   }
@@ -51,9 +45,9 @@ export class AddItem implements OnInit{
   showAlert(title : string, subTitle : string){
     let alert = this.alertCtrl.create({
     title: title,
-    subTitle: subTitle + '.',
-    buttons: ['OK'],
-    cssClass : 'alert'
+    subTitle: subTitle + ".",
+    buttons: ["OK"],
+    cssClass : "alert"
   });
   alert.present();
   }
@@ -61,23 +55,26 @@ export class AddItem implements OnInit{
   addHomework()
   {
     this.service.addHomework(
-      this.task,
       this.date,
       this.homeworkDetails,
       this.subject
     );
-    this.showAlert("Homework Added", "You added" + this.task);
+    this.showAlert("Homework Added", "You added a" + this.subject + " homework.");
   }
   
   homeworkValidate(){
-    return (this.homeworkDetails != "" || this.subject != "" || this.task != "")
+    return (this.homeworkDetails == "" || this.subject == "" || this.task == "")
+  }
+  
+  examValidate(){
+	return (this.theTopics.length == 0 || this.subject == "" || this.examName == "")
   }
 
   addExam()
   {
-    this.service.addExam(this.examName, this.subject, this.date, this.stuffNeeded, this.theTopics);
+    this.service.addExam(this.examName, this.subject, this.date, this.theTopics);
     this.showAlert("Exam added", this.examName);
     this.theTopics = []
-
   }
+ 
 }

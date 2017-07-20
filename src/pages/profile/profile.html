@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span style="font-family:Permanent Marker;
+    <ion-title><span ion-text style="font-family:Permanent Marker;
 	     text-shadow: 1px 1px 2px black;" color="white">stucate</span> profile</ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,32 +13,24 @@
 		<img src="{{ this.imageSource }}" style="vertical-align:middle;margin:10px;border-radius:50%;border:1px solid #ddd;width:64px;height:64px;">
 	</div>
   <ion-list>
-    <ion-list-header no-lines>Your subjects and averages:<br>
-      <span style="font-size:10px;">(Swipe right on a subject for more options)</span>
-    </ion-list-header>
-    <ion-item-sliding *ngFor="let subject of subjects" color="light">
-      <ion-item color="light">
-      <ion-avatar item-left>
-        <img src="img/{{ subject.image }}.png" onerror="this.src='img/default.png'" height="30px" width="30px">
-      </ion-avatar>
-		  <b>{{subject.name | uppercase}}</b> &middot; {{ this.getNumberOfHomeworks(subject.name) }}
-		  <span [color]="isAverageGreaterThanTarget(subject.totalPercentageScores,
-        subject.numberOfTests, subject.target)" item-right><b>{{ calculateAverage(subject) }}%</b></span>
-    </ion-item>
-      <ion-item-options side="right">
-      <button ion-button  color="orange" style="text-transform:none;font-size:14px;opacity:0.7" (click)="presentAddScorePrompt(subject)">
-        Add<br>score</button>
-      <button ion-button color="green" style="text-transform:none;font-size:14px;opacity:0.7"
-        (click)="presentTargetPrompt(subject)">
-        Set<br>target</button>
-      <button ion-button color="red" style="text-transform:none;font-size:14px;opacity:0.7"
-        (click)="removeSubject(subject)">
-        Remove<br>subject</button>
-      </ion-item-options>
-	</ion-item-sliding>
-  <ion-item>
-    <button ion-button style="width:100%;padding:20px;" color="secondary"
-    (click)="presentAddSubject()">Add new subject</button>
-  </ion-item>
-</ion-list>
+		<ion-list-header no-lines>Your subjects and averages:<br><span style="font-size:10px;">(Swipe right on a subject for more options)</span>
+		</ion-list-header>
+		<ion-item-sliding *ngFor="let subject of subjects" color="light">
+			<ion-item color="light">
+			  <ion-avatar item-left>
+				<img src="img/{{ subject.image }}.png" onerror="this.src='img/default.png'" height="30px" width="30px">
+			  </ion-avatar>
+				  <b>{{subject.name | uppercase}}</b> &middot; {{ this.getNumberOfHomeworks(subject.name) }}
+				  <span ion-text [color]="isAverageGreaterThanTarget(subject.totalPercentageScores, subject.numberOfTests, subject.target)" item-right><b>{{ calculateAverage(subject) }}%</b></span>
+			</ion-item>
+			<ion-item-options side="right">
+				<button ion-button style="text-transform:none;font-size:14px;opacity:0.7" (click)="presentAddScorePrompt(subject)">Add<br>score</button>
+				<button ion-button color="green" style="text-transform:none;font-size:14px;opacity:0.7" (click)="presentTargetPrompt(subject)">Set<br>target</button>
+				<button ion-button color="red" style="text-transform:none;font-size:14px;opacity:0.7" (click)="removeSubject(subject)">Remove<br>subject</button>
+			</ion-item-options>
+		</ion-item-sliding>
+		<ion-item>
+			<button ion-button style="width:100%;padding:20px;" color="secondary" (click)="presentAddSubject()">Add new subject</button>
+		</ion-item>
+	</ion-list>
 </ion-content>

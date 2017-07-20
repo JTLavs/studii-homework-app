@@ -13,14 +13,14 @@
 	  <ion-list-header color="light-purple"><b>UPCOMING</b><br><span style="font-size:11px">(Exams are removed when complete.)</span></ion-list-header>
 		  <ion-item detail-push *ngFor="let work of exams" (click)="itemTapped($event, work)">
 			<ion-avatar item-left>
-			  <img [src]="getSubjectImage(work.subject)" height="30px" width="30px">
+			  <img [src]="getSubjectImage(work.subject)" height="30px" width="30px" onerror="this.src='img/default.png'">
 			</ion-avatar>
 			<p style="font-size:18px;">{{ work.name }}</p>
 			<p style="font-size:12px;"> {{work.date | date:'shortDate'}}</p>
 		  </ion-item>
   </ion-list>
  </div>
-<div *ngIf="!checkIfExamsExist()">
-	<p>Good news! No Exams scheduled.</p>	
+<div *ngIf="!checkIfExamsExist()" style="text-align:center;font-size:20px;">
+	<p>Good news! <br>No Exams coming up.</p>	
 </div>
 </ion-content>

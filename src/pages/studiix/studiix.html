@@ -9,10 +9,14 @@
 </ion-header>
 
 <ion-content>
-	<ion-scroll scrollY="true" align="center">
-			<div class="subject" *ngFor="let subject of subjects" (click)="itemTapped($event, subject.name)" style="padding-top:20px;margin:0 auto;border-bottom:1px solid gray;">
-				<img [src]="getSubjectImage(subject.name)" style="vertical-align:middle;"/>
+<p style="text-align:center;padding-top:10px;font-size:15px;">Here you will find the subjects with resources and materials gathered from the internet.
+<br>Just choose a subject below to expand your knowledge and explore.</p>
+	<ion-list>
+			<ion-item detail-push *ngFor="let subject of subjects" (click)="itemTapped($event, subject.name)" style="padding-top:10px;">
+				<ion-thumbnail item-left>
+					<img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'"/>
+				</ion-thumbnail>
 				<p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
-			</div>
-	</ion-scroll>
+			</ion-item>
+	</ion-list>
 </ion-content>
