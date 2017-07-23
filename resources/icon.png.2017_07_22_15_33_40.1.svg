@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16px"
+   height="16px"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="icon.png.2017_07_22_15_33_40.1.svg"
+   inkscape:export-filename="C:\Users\james lavery\iconic-apps\studii-ionic-app\src\assets\img\logo2.png"
+   inkscape:export-xdpi="1020.3285"
+   inkscape:export-ydpi="1020.3285"
+   inkscape:version="0.92.1 r15371">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="35.125"
+     inkscape:cx="4.6938229"
+     inkscape:cy="7.1329496"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="745"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:grid-bbox="true" />
+  <defs
+     id="defs3696">
+    <linearGradient
+       id="linearGradient4642"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4640" />
+    </linearGradient>
+  </defs>
+  <metadata
+     id="metadata3699">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;fill-opacity:1;stroke-opacity:1"
+       id="rect4529"
+       width="17.49806"
+       height="17.840616"
+       x="-0.84896398"
+       y="-0.83745778"
+       ry="1.6227758" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffa500;stroke-linecap:round;stroke-opacity:1;paint-order:normal;stroke-width:0.99990778;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
+       id="path4541"
+       sodipodi:cx="7.3451958"
+       sodipodi:cy="7.9430604"
+       sodipodi:expansion="0.66000003"
+       sodipodi:revolution="2.0699999"
+       sodipodi:radius="4.2761726"
+       sodipodi:argument="-17.548233"
+       sodipodi:t0="0.50320953"
+       d="M 7.3664439,10.660727 C 5.7566475,10.835788 4.3536202,9.5445664 4.2129507,7.96755 4.0499513,6.1401966 5.5213059,4.5593468 7.3176727,4.4228309 c 2.032148,-0.1544343 3.7816863,1.487178 3.9148193,3.4898365 0.148029,2.2267396 -1.6556526,4.1373296 -3.8541668,4.2676846 -0.252704,0.01498 -0.5067196,0.0072 -0.7580537,-0.02301"
+       transform="matrix(1.8371532,0,0,1.8232109,-6.0731219,-7.0388254)"
+       inkscape:export-xdpi="1273.7766"
+       inkscape:export-ydpi="1273.7766" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.49357224px;line-height:1.25;font-family:'Poor Richard';-inkscape-font-specification:'Poor Richard';letter-spacing:0px;word-spacing:0px;fill:#ffa500;fill-opacity:1;stroke:#ffa500;stroke-width:0.33733925;stroke-opacity:1;"
+       x="5.782361"
+       y="12.739717"
+       id="text12859"
+       transform="scale(0.98628036,1.0139105)"
+       inkscape:export-xdpi="1273.7766"
+       inkscape:export-ydpi="1273.7766"><tspan
+         sodipodi:role="line"
+         id="tspan12857"
+         x="5.782361"
+         y="12.739717"
+         style="fill:#ffa500;stroke:#ffa500;stroke-width:0.33733925;fill-opacity:1;stroke-opacity:1;">?</tspan></text>
+  </g>
+</svg>

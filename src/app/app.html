@@ -2,10 +2,9 @@
   <ion-content class="menu-content myBg">
       <div style="text-align:center;padding-bottom:5px;">
         <ion-title>
-          <h2 ion-text style="font-size:40px;font-family:Permanent Marker;
-          text-shadow: 1px 1px 2px black;" color="orange">stucate</h2>
+          <h2 ion-text style="font-size:40px;font-family:Permanent Marker; text-shadow: 1px 1px 2px black;vertical-align:middle;" color="orange">stucate</h2>
         </ion-title>
-        {{date | date:'mediumDate'}}
+        <p>{{date | date:'mediumDate'}}</p>
       </div>
 		  <ion-list-header style="margin-bottom:0;">Your stuff</ion-list-header>
 		  <ion-item menuClose detail-push no-lines *ngFor="let p of pages" (click)="openPage(p)" style="font-size:20px;padding:0;">
