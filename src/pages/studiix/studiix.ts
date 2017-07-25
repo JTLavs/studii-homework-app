@@ -12,19 +12,21 @@ import { StudiixResources } from '../../pages/studiix_resources/studiix_resource
 export class Studiix implements OnInit{
 	subjects : Subject[] = [];
 
-  constructor(public navCtrl: NavController, private theService : Service) {}
+    constructor(public navCtrl: NavController, private theService : Service) {}
+		
+	ngOnInit() : void{
+		this.subjects = this.theService.getSubjects();
+	}
 
-	getSubjects(){
-		this.subjects = this.theService.getSubjectsWithResources();
+	doesSubjectHaveResources(subjectName){
+		console.log(this.theService.getResourcesForSubject(subjectName).length)
+		return (this.theService.getResourcesForSubject(subjectName).length > 0)
 	}
   
 	getSubjectImage(subject : string){
 		return this.theService.getSubjectImage(subject)
 	}
-	
-	ngOnInit() : void{
-		this.getSubjects()
-	}
+
 
 	itemTapped(event, subject) {
 		this.navCtrl.push(StudiixResources, {subjectName: subject});

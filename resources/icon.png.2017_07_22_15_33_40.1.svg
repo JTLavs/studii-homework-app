@@ -8,6 +8,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="16px"
@@ -16,7 +17,7 @@
    version="1.1"
    id="SVGRoot"
    sodipodi:docname="icon.png.2017_07_22_15_33_40.1.svg"
-   inkscape:export-filename="C:\Users\james lavery\iconic-apps\studii-ionic-app\src\assets\img\logo2.png"
+   inkscape:export-filename="C:\Users\james lavery\iconic-apps\studii-ionic-app\resources\icon.png"
    inkscape:export-xdpi="1020.3285"
    inkscape:export-ydpi="1020.3285"
    inkscape:version="0.92.1 r15371">
@@ -28,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="35.125"
-     inkscape:cx="4.6938229"
-     inkscape:cy="7.1329496"
+     inkscape:cx="6.1723203"
+     inkscape:cy="9.0495873"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -42,6 +43,30 @@
   <defs
      id="defs3696">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4524">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4520" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4522" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4508">
+      <stop
+         style="stop-color:#ffa500;stop-opacity:1;"
+         offset="0"
+         id="stop4504" />
+      <stop
+         style="stop-color:#ffa500;stop-opacity:0;"
+         offset="1"
+         id="stop4506" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4642"
        osb:paint="solid">
       <stop
@@ -49,6 +74,24 @@
          offset="0"
          id="stop4640" />
     </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4508"
+       id="linearGradient4510"
+       x1="5.8311171"
+       y1="8.0222372"
+       x2="11.347142"
+       y2="8.0222372"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4524"
+       id="linearGradient4526"
+       x1="5.8315978"
+       y1="8.0222372"
+       x2="11.346661"
+       y2="8.0222372"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <metadata
      id="metadata3699">
@@ -67,7 +110,7 @@
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
     <rect
-       style="fill:#ffffff;stroke:#ffffff;fill-opacity:1;stroke-opacity:1"
+       style="fill:#ffa500;stroke:#ffa500;fill-opacity:1;stroke-opacity:1"
        id="rect4529"
        width="17.49806"
        height="17.840616"
@@ -76,7 +119,7 @@
        ry="1.6227758" />
     <path
        sodipodi:type="spiral"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffa500;stroke-linecap:round;stroke-opacity:1;paint-order:normal;stroke-width:0.99990778;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
+       style="fill:#ffa500;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-linecap:round;stroke-opacity:1;paint-order:normal;stroke-width:0.99990778;stroke-miterlimit:4;stroke-dasharray:none;opacity:1"
        id="path4541"
        sodipodi:cx="7.3451958"
        sodipodi:cy="7.9430604"
@@ -91,7 +134,7 @@
        inkscape:export-ydpi="1273.7766" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.49357224px;line-height:1.25;font-family:'Poor Richard';-inkscape-font-specification:'Poor Richard';letter-spacing:0px;word-spacing:0px;fill:#ffa500;fill-opacity:1;stroke:#ffa500;stroke-width:0.33733925;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.49357224px;line-height:1.25;font-family:'Poor Richard';-inkscape-font-specification:'Poor Richard';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.33637795;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:butt;"
        x="5.782361"
        y="12.739717"
        id="text12859"
@@ -102,6 +145,6 @@
          id="tspan12857"
          x="5.782361"
          y="12.739717"
-         style="fill:#ffa500;stroke:#ffa500;stroke-width:0.33733925;fill-opacity:1;stroke-opacity:1;">?</tspan></text>
+         style="fill:#ffffff;stroke:#ffffff;stroke-width:0.33637795;fill-opacity:1;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-linecap:butt;">?</tspan></text>
   </g>
 </svg>

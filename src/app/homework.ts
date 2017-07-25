@@ -12,7 +12,6 @@ export class Subject {
 	totalPercentageScores : number;
 	numberOfTests : number;
 	target : number;
-	image : string;
 }
 
 export class Link{

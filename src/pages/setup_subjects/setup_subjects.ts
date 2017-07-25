@@ -1,52 +1,48 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { Subject } from '../../app/homework';
 import { Service } from '../../app/homework-service';
 import { NavController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
-import { Profile } from '../profile/profile';
-
+import { Profile } from '../../pages/profile/profile;
 
 @Component({
-  selector: 'setup_subjects',
-  templateUrl: 'setup_subjects.html'
+    selector: 'setup_subjects',
+    templateUrl: 'setup_subjects.html'
 })
+
 export class SetupSubjects{
-  @ViewChild('subjectNameInput') subjectNameInput;
-  subjects : Subject[] = [];
-  subjectName : string;
-  constructor(private subjectsService : Service, private keyboard : Keyboard,
-              private nav : NavController) {
-    //this.subjectsService.getSubjects().then(subjects => this.subjects = subjects);
-  }
+    subjects : Subject[] = [];
+    subjectName : string;
+    constructor(private subjectsService : Service, private keyboard : Keyboard, private nav : NavController) {}
 
-  addSubject(){
-    //this.subjectsService.addSubject(this.subjectName.toLowerCase())
-    this.subjects.push({
-      name : this.subjectName, totalPercentageScores: 0, numberOfTests : 0, target : 0,
-        image : 'icon'+this.subjectName
-    })
-    this.subjectName = ""
-  }
-
-  removeSubject(subject){
-    this.subjects.splice(this.subjects.indexOf(subject), 1);
-  }
-  isAddDisabled(){
-    if(this.subjectName=="" || this.subjectName==null){
-      return true;
+    addSubject(){
+        if(this.subjectName.toLowerCase() == 'science'){
+		    this.subjects.push({name : 'Physics', totalPercentageScores: 0, numberOfTests : 0, target : 0},
+			    {name : 'Chemistry', totalPercentageScores: 0, numberOfTests : 0, target : 0},
+			    {name : 'Biology', totalPercentageScores: 0, numberOfTests : 0, target : 0})
+	    }
+		this.subjects.push({name : this.subjectName, totalPercentageScores: 0, numberOfTests : 0, target : 0})
+        this.subjectName = ""
     }
-  }
-  closeKeyboard(){
-    this.keyboard.close();
-  }
-  isFinishDisabled(){
-    if(this.subjects.length==0){
-      return true;
-    }
-  }
 
-  nextStep(){
-    this.subjectsService.addAllSubjects(this.subjects);
-    this.nav.setRoot(Profile)
-  }
+    removeSubject(subject){
+        this.subjects.splice(this.subjects.indexOf(subject), 1);
+    }
+  
+    isAddDisabled(){
+        return (this.subjectName == "" || this.subjectName == undefined)
+    }
+  
+    closeKeyboard(){
+        this.keyboard.close();
+    }
+  
+    isFinishDisabled(){
+        return (this.subjects.length == 0)
+    }
+
+    nextStep(){
+        this.subjectsService.addAllSubjects(this.subjects);
+        this.nav.setRoot(Profile)
+    }
 }

@@ -18,7 +18,7 @@
 		<ion-item-sliding *ngFor="let subject of subjects" color="light">
 			<ion-item color="light">
 			  <ion-avatar item-left>
-				<img src="img/{{ subject.image }}.png" onerror="this.src='img/default.png'" height="30px" width="30px">
+				<img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'" height="30px" width="30px">
 			  </ion-avatar>
 				  <b>{{subject.name | uppercase}}</b> &middot; {{ this.getNumberOfHomeworks(subject.name) }}
 				  <span ion-text [color]="isAverageGreaterThanTarget(subject.totalPercentageScores, subject.numberOfTests, subject.target)" item-right><b>{{ calculateAverage(subject) }}%</b></span>

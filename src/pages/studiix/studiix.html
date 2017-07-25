@@ -3,8 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span style="font-family:Permanent Marker;
-	     text-shadow: 1px 1px 2px black;" color="none">stucateX</span></ion-title>
+    <ion-title><span ion-text style="font-family:Permanent Marker;text-shadow: 1px 1px 2px black;" color="none">stucateX</span></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,11 +11,14 @@
 <p style="text-align:center;padding-top:10px;font-size:15px;">Here you will find the subjects with resources and materials gathered from the internet.
 <br>Just choose a subject below to expand your knowledge and explore.</p>
 	<ion-list>
-			<ion-item detail-push *ngFor="let subject of subjects" (click)="itemTapped($event, subject.name)" style="padding-top:10px;">
-				<ion-thumbnail item-left>
-					<img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'"/>
-				</ion-thumbnail>
-				<p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
+		<div *ngFor="let subject of subjects">
+			<ion-item detail-push *ngIf="doesSubjectHaveResources(subject.name)" (click)="itemTapped($event, subject.name)" style="padding-top:10px;">
+				    <ion-thumbnail item-left>
+					    <img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'"/>
+				    </ion-thumbnail>
+				    <p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
 			</ion-item>
+		</div>
 	</ion-list>
+	<p ion-text style="text-align:center;font-size:20px;">More subjects coming soon...</p>
 </ion-content>

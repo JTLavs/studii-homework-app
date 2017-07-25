@@ -26,15 +26,6 @@ export class Service
 	getTomorrowsHomeworks() : Homework[]{
 		return this.tomorrowHomeworks;
 	}
-	
-	getSubjectsWithResources(){
-		for(let subject of SUBJECTS){
-			if(this.getNumberOfResourcesOnSubject(subject.name)){
-				this.subjectsWithResources.push(subject);
-			}
-		}
-		return this.subjectsWithResources;
-	}
 
 	//GET METHODS
 	getProfileName() : string{
@@ -47,22 +38,15 @@ export class Service
 	}
 	
 	getResourcesForSubject(subjectName : string){
+	console.log("function called")
 		let associatedRecources : Resource[] = [];
-		for(let resource of RESOURCES){
-			if(resource.subject == subjectName){
+		RESOURCES.forEach(function (resource){
+		    if(resource.subject == subjectName){
 				associatedRecources.push(resource)
+				console.log("IN IF")
 			}
-		}
+		});
 		return associatedRecources;
-	}
-	
-	getNumberOfResourcesOnSubject(subjectName : string){
-		for(let aResource of RESOURCES){
-			if(aResource.subject == subjectName){
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	//SET METHODS
@@ -95,8 +79,8 @@ export class Service
 	{
 		return this.getExams().then(exams => exams.find(exam => exam === exam).topics);
 	}
-	getSubjects(): Promise<Subject[]>{
-		return Promise.resolve(SUBJECTS);
+	getSubjects(): Subject[]{
+		return SUBJECTS;
 	}
 
 	addScoreToSubject(subject : Subject, score:number){
@@ -149,13 +133,13 @@ export class Service
 	}
 
 	getSubjectImage(subjectName : string){
-		let imageString = "icon"+subjectName;
+		let imageString = subjectName.toLowerCase() + "-icon";
 		if(subjectName.toLowerCase().includes('english')){
-			imageString = 'iconEnglish'
+			imageString = 'english-icon'
 		}else if(subjectName.toLowerCase().includes('maths')){
-			imageString = 'iconMaths'
+			imageString = 'maths-icon'
 		}else if(subjectName.toLowerCase().includes('science')){
-			imageString = 'iconScience'
+			imageString = 'icon-physics'
 		}
 		return "img/"+imageString+".png"
 	}
@@ -175,14 +159,13 @@ export class Service
 		
 	addAllSubjects(subjects : Subject[])
 	{
-		for(let theSubject of subjects){
-			this.addSubject(theSubject.name)
-		}
+		subjects.forEach(function (theSubject){
+		    this.addSubject(theSubject.name)
+		})
 	}
 
 	addSubject(subjectName : string){
-		let imageURL = this.getSubjectImage(subjectName)
-		SUBJECTS.push({name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0, image : imageURL})
+		SUBJECTS.push({name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0})
 	}
 
 	saveWork(key : string, arr : any){

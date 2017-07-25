@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 import { Service } from '../../app/homework-service';
 import { Resource } from '../../app/homework';
-import { AlertController } from 'ionic-angular'
 
 @Component({
   selector: 'studiix-resources',
