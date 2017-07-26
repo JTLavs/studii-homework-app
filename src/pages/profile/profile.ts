@@ -35,6 +35,7 @@ export class Profile implements OnInit{
     }
   
     getNumberOfHomeworks(subjectName){
+		console.log(this.subjectsService.countHomeworksBySubject(subjectName))
 	    return this.subjectsService.countHomeworksBySubject(subjectName);
     }
   

@@ -12,9 +12,9 @@ export class SetupName{
     profileName : string;
     profileImage : string = "logo";
 
-  constructor(private subjectsService : Service, private navCtrl : NavController, private menuController : MenuController) {
-      this.menuController = menuController;
-      this.menuController.swipeEnable(false);
+    constructor(private subjectsService : Service, private navCtrl : NavController, private menuController : MenuController) {
+        this.menuController = menuController;
+        this.menuController.swipeEnable(false);
     }
 
     checkValid(){

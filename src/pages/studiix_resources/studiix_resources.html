@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{theSubject}}</ion-title>
+    <ion-title><span ion-text class="logo" color="none">stucateX </span><span color="none">{{theSubject}}</span></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -11,9 +11,6 @@
 	<ion-list>
 		<div *ngFor="let resource of resources">
 			<ion-list-header color="light-green" style="margin-bottom:0;"><b>{{resource.topic}}</b></ion-list-header>
-			<ion-item no-padding  color="light" detail-push>
-				<p style="font-size:18px;padding-left:10px;">Books about {{resource.topic}}</p>
-			</ion-item>
 			<ion-item no-padding *ngFor="let link of resource.links" detail-push>
 				<p style="padding-left:10px;" (click)="openLink(link.href)"><span style="font-size:18px;">{{link.title}}</span>
 				<br>
@@ -22,5 +19,5 @@
 			</ion-item>
 		</div>
 	</ion-list>
-	<p ion-text style="text-align:center;font-size:20px;">More resources coming soon...</p>
+	<p ion-text style="text-align:center;font-size:20px;">More {{ theSubject }} resources coming soon...</p>
 </ion-content>

@@ -46,7 +46,7 @@ export class AddItem implements OnInit{
 
     addHomework(){
         this.service.addHomework(this.date, this.homeworkDetails, this.subject);
-        this.showAlert("Homework Added", "You added a" + this.subject + " homework.");
+        this.showAlert("Homework Added", "You added a " + this.subject.toLowerCase() + " homework.");
     }
   
     homeworkValidate(){

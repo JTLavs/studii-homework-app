@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span ion-text style="font-family:Permanent Marker;text-shadow: 1px 1px 2px black;" color="none">stucateX</span></ion-title>
+    <ion-title><span ion-text class="logo" color="none">stucateX</span></ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
 				    <ion-thumbnail item-left>
 					    <img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'"/>
 				    </ion-thumbnail>
-				    <p style="font-size:20px;font-weight:bold;">{{subject.name}}</p>
+				    <p style="font-size:20px;font-weight:bold;">{{subject.name | uppercase}}</p>
 			</ion-item>
 		</div>
 	</ion-list>

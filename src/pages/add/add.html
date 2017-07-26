@@ -23,7 +23,7 @@
 		<ion-item>
 			<ion-label stacked>Subject: </ion-label>
       <ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name}}">{{theSubject.name}}</ion-option>
+        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name}}</ion-option>
       </ion-select>
 		</ion-item>
 		<ion-item>
@@ -43,7 +43,7 @@
 		<ion-item>
 			<ion-label stacked>Choose subject: </ion-label>
 			<ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-				<ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name}}">{{theSubject.name}}</ion-option>
+				<ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name}}</ion-option>
 			</ion-select>
 		</ion-item>
 		<ion-item>

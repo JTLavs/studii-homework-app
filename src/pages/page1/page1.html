@@ -1,33 +1,33 @@
 <ion-header>
-  <ion-navbar color="secondary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>My Homework</ion-title>
-  </ion-navbar>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>My Homework</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-	<ion-list *ngIf="checkIfHomeworkTomorrow()">
-		<ion-list-header color="light-green"><b>TOMORROW</b></ion-list-header>
+    <ion-list *ngIf="checkIfHomeworkTomorrow()">
+		<ion-list-header color="light-green" class="header">TOMORROW</ion-list-header>
 		<ion-item detail-push *ngFor="let homework of tomorrowHomeworks" (click)="itemTapped($event, homework)">
 			<ion-avatar item-left>
-				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+				<img [src]="getHomeworkImage(homework.subject)">
 			</ion-avatar>
-			<p style="font-size:18px;">{{homework.details}}</p>
+			<p class="details">{{homework.details}}</p>
 		</ion-item>
 	</ion-list>
 	<ion-list *ngIf="!checkIfNoHomeworks()">
-		<ion-list-header color="light-green"><b>UPCOMING</b></ion-list-header>
+		<ion-list-header color="light-green" class="header">UPCOMING</ion-list-header>
 		<ion-item detail-push *ngFor="let homework of upcomingHomeworks" (click)="itemTapped($event, homework)">
 			<ion-avatar item-left>
-				<img [src]="getHomeworkImage(homework.subject)" height="30px" width="30px">
+				<img [src]="getHomeworkImage(homework.subject)">
 			</ion-avatar>
-			<p style="font-size:18px;">{{homework.details}}</p>
-			<p style="font-size:12px;">Due on {{homework.date | date: 'dd MMM' }}</p>
+			<p class="details">{{homework.details}}</p>
+			<p class="date">Due on {{homework.date | date: 'dd MMM' }}</p>
 		</ion-item>
 	</ion-list>
-<div *ngIf="checkIfNoHomeworks()">
-	<p>No homeworks to do.</p>
-</div>
+    <div *ngIf="checkIfNoHomeworks()" class="no-homeworks">
+	    <p>No homeworks to do.</p>
+    </div>
 </ion-content>

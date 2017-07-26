@@ -1,43 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
 import { detailPage } from '../page2/page2';
 import { Exam } from '../../app/homework';
 import { Service } from '../../app/homework-service';
 
 @Component({
-  selector: 'myexams',
-  templateUrl: 'exams.html',
-  providers : [Service]
+    selector: 'myexams',
+    templateUrl: 'exams.html',
+    providers : [Service]
 })
 export class myexams implements OnInit{
 	exams : Exam[] = [];
 	selectedExam : Exam;
 	todaysDate : Date = new Date();
 
-  constructor(public navCtrl: NavController,
-		private theService : Service) {}
+    constructor(public navCtrl: NavController, private theService : Service) {}
 		
 	getAllExams(){
 		return this.theService.getExams().then(exams => this.exams = exams);
 	}
 
-	ngOnInit() : void
-	{
+	ngOnInit() : void{
 		this.getAllExams();
 	}
 
-  getSubjectImage(subjectName : string){
-    return this.theService.getSubjectImage(subjectName)
-  }
+    getSubjectImage(subjectName : string){
+        return this.theService.getSubjectImage(subjectName)
+    }
   
-  checkIfExamsExist(){
-	return (this.exams.length > 0)
-  }
+    checkIfExamsExist(){
+	    return (this.exams.length > 0)
+    }
 
 	itemTapped(event, work) {
-		this.navCtrl.push(detailPage, {
-		  theWork: work
-		});
+		this.navCtrl.push(detailPage, { theWork: work });
 	}
 }

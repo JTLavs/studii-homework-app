@@ -6,9 +6,9 @@ import { Service } from '../../app/homework-service';
 import { Events } from 'ionic-angular';
 
 @Component({
-  selector: 'myhomework',
-  templateUrl: 'page1.html',
-  providers : [Service]
+    selector: 'myhomework',
+    templateUrl: 'page1.html',
+    providers : [Service]
 })
 export class myhomework implements OnInit{
 	upcomingHomeworks : Homework[] = [];
@@ -16,7 +16,7 @@ export class myhomework implements OnInit{
 	tomorrowHomeworks : Homework[] = [];
 	todaysDate : Date = new Date();
 
-  constructor(public navCtrl: NavController, private theService : Service, public events : Events) {
+    constructor(public navCtrl: NavController, private theService : Service, public events : Events) {
 		this.events.subscribe('Homework Deleted', (theHomework)=> {
 			this.removeHomework(theHomework)
 		})
@@ -51,9 +51,8 @@ export class myhomework implements OnInit{
 		}
 	}
 	
-	ngOnInit() : void
-	{
-		this.theService.filterHomeworks();
+	ngOnInit() : void{
+		this.theService.sortHomeworksAndRemovePastHomeworks();
 		this.getHomeworks();
 		this.sortHomeworks();
 	}

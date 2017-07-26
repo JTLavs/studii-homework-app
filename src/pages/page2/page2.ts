@@ -5,15 +5,14 @@ import { Service } from '../../app/homework-service';
 import { Events } from 'ionic-angular';
 
 @Component({
-  selector: 'detail-page',
-  templateUrl: 'page2.html',
+    selector: 'detail-page',
+    templateUrl: 'page2.html',
 })
 export class detailPage {
-  selectedItem: any;
+    selectedItem: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-			private theService : Service, private alertCtrl : AlertController, private events : Events) {
-			
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+	    private theService : Service, private alertCtrl : AlertController, private events : Events) {	
 		this.selectedItem = navParams.get('theWork');
 	}
 

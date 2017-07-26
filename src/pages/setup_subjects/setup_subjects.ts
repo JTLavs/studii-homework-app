@@ -3,7 +3,7 @@ import { Subject } from '../../app/homework';
 import { Service } from '../../app/homework-service';
 import { NavController } from 'ionic-angular';
 import { Keyboard } from '@ionic-native/keyboard';
-import { Profile } from '../../pages/profile/profile;
+import { Profile } from '../../pages/profile/profile';
 
 @Component({
     selector: 'setup_subjects',
