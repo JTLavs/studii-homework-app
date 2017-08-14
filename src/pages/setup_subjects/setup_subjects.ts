@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+ import { Component} from '@angular/core';
 import { Subject } from '../../app/homework';
 import { Service } from '../../app/homework-service';
 import { NavController } from 'ionic-angular';
@@ -7,7 +7,8 @@ import { Profile } from '../../pages/profile/profile';
 
 @Component({
     selector: 'setup_subjects',
-    templateUrl: 'setup_subjects.html'
+    templateUrl: 'setup_subjects.html',
+	providers : [Service]
 })
 
 export class SetupSubjects{
@@ -21,7 +22,10 @@ export class SetupSubjects{
 			    {name : 'Chemistry', totalPercentageScores: 0, numberOfTests : 0, target : 0},
 			    {name : 'Biology', totalPercentageScores: 0, numberOfTests : 0, target : 0})
 	    }
-		this.subjects.push({name : this.subjectName, totalPercentageScores: 0, numberOfTests : 0, target : 0})
+		else{
+			this.subjects.push({name : this.subjectName, totalPercentageScores: 0, numberOfTests : 0, target : 0})
+		}
+
         this.subjectName = ""
     }
 
@@ -42,6 +46,7 @@ export class SetupSubjects{
     }
 
     nextStep(){
+		console.log("called")
         this.subjectsService.addAllSubjects(this.subjects);
         this.nav.setRoot(Profile)
     }

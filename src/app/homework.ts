@@ -1,9 +1,6 @@
-class Work{
+export class Homework{
 	subject : string;
 	date : string;
-}
-
-export class Homework extends Work{
 	details : string;
 }
 
@@ -32,7 +29,9 @@ export class Topics
 	status : string;
 }
 
-export class Exam extends Work{
+export class Exam{
+	subject : string;
+	date : string;
 	name : string;
 	topics : Topics[];
 }

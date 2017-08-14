@@ -147,9 +147,9 @@ export class Service
 	}
 		
 	addAllSubjects(subjects : Subject[]){
-		subjects.forEach(function (theSubject){
-		    this.addSubject(theSubject.name)
-		})
+		for (let subject of subjects){
+			this.addSubject(subject.name)
+		}
 	}
 
 	addSubject(subjectName : string){

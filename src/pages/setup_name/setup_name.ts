@@ -9,7 +9,7 @@ import { SetupSubjects } from '../setup_subjects/setup_subjects'
     templateUrl: 'setup_name.html'
 })
 export class SetupName{
-    profileName : string;
+    profileName : string = "";
     profileImage : string = "logo";
 
     constructor(private subjectsService : Service, private navCtrl : NavController, private menuController : MenuController) {
@@ -18,7 +18,7 @@ export class SetupName{
     }
 
     checkValid(){
-        return (this.profileName!= "" && this.profileName!= undefined && this.profileImage!= undefined)
+        return (this.profileName.length > 1 && this.profileImage != "");
     }
 
     nextStep(){
