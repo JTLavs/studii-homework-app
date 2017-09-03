@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { Keyboard } from '@ionic-native/keyboard'
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component'
 import { myhomework } from '../pages/page1/page1'
@@ -36,6 +37,7 @@ import { About } from '../pages/about/about'
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+	IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

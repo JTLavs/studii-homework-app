@@ -12,14 +12,13 @@
 		<img src="{{ this.imageSource }}" class="profile-image">
 	</div>
   <ion-list>
-		<ion-list-header no-lines>Your subjects and averages:<br><span class="info">(Swipe right on a subject for more options)</span>
-		</ion-list-header>
+		<ion-list-header no-lines>Your subjects and averages:<br><span class="info">(Swipe right on a subject for more options)</span></ion-list-header>
 		<ion-item-sliding *ngFor="let subject of subjects" color="light">
 			<ion-item color="light">
 			  <ion-avatar item-left>
 				<img [src]="getSubjectImage(subject.name)" onerror="this.src='img/default.png'" height="30px" width="30px">
 			  </ion-avatar>
-				  <b>{{subject.name | uppercase}}</b> &middot; {{ this.getNumberOfHomeworks(subject.name) }}
+				   <b>{{subject.name | uppercase}}</b> 
 				  <span ion-text class="bold" [color]="isAverageGreaterThanTarget(subject.totalPercentageScores, subject.numberOfTests, subject.target)" item-right>{{ calculateAverage(subject) }}%</span>
 			</ion-item>
 			<ion-item-options side="right">

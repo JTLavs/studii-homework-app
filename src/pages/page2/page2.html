@@ -16,8 +16,7 @@
   		<span *ngIf="selectedItem.name">{{selectedItem.name}}</span>
   		</b>
   	</h2>
-    <img [src]="theService.getSubjectImage(selectedItem.subject)"
-    height="100px" width="100px" style="vertical-align:middle;"/>
+    <img [src]="theService.getSubjectImage(selectedItem.subject)" height="100px" width="100px" style="vertical-align:middle;" onerror="img/default.png"/>
 	<p style="padding-bottom:5px;"><span style="font-size:18px;"><b>{{selectedItem.date | date: 'mediumDate'}}</b></span></p>
   </div>
 	<p style="padding-bottom:5px;" text-wrap *ngIf="selectedItem.details"><span style="font-size:20px;">{{selectedItem.details}}</span></p>

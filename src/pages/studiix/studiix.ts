@@ -15,11 +15,10 @@ export class Studiix implements OnInit{
     constructor(public navCtrl: NavController, private theService : Service) {}
 		
 	ngOnInit() : void{
-		this.subjects = this.theService.getSubjects();
+		this.theService.getSubjects().then(subjects => this.subjects = subjects);
 	}
 
 	doesSubjectHaveResources(subjectName){
-		console.log(this.theService.getResourcesForSubject(subjectName).length)
 		return (this.theService.getResourcesForSubject(subjectName).length > 0)
 	}
   

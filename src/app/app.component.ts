@@ -11,6 +11,7 @@ import { SetupName } from '../pages/setup_name/setup_name'
 import { Studiix } from '../pages/studiix/studiix'
 import { Service } from './homework-service'
 import { About } from '../pages/about/about'
+import { Storage } from '@ionic/storage';
 
 @Component({
 	templateUrl: 'app.html'
@@ -24,7 +25,7 @@ export class MyApp {
     pages: Array<{title: string, icon : string, component: any, color:string}>;
     settingsPages: Array<{title: string, icon : string, component: any, color:string}>;
 
-	constructor(public platform: Platform, private theSplashscreen : SplashScreen, private keyboard : Keyboard, private theService : Service) {
+	constructor(public platform: Platform, private theSplashscreen : SplashScreen, private keyboard : Keyboard, private storage : Storage) {
 		this.initializeApp(theSplashscreen);
 	}
 
@@ -45,10 +46,17 @@ export class MyApp {
 	initializeApp(splashscreen : SplashScreen) {
 		this.platform.ready().then(() => {
 			this.setupPages();
+			var subjects = this.storage.get('thesubjects');
 			setTimeout(function(){
 				splashscreen.hide();
 			}, 100);
-			this.rootPage = SetupName;
+			
+			if(subjects){
+				this.rootPage = Profile;
+			}else{
+				this.rootPage = SetupName;
+			}
+			
 		});
 	}
 

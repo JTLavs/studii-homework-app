@@ -23,7 +23,7 @@
 		<ion-item>
 			<ion-label stacked>Subject: </ion-label>
       <ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name}}</ion-option>
+        <ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name | uppercase}}</ion-option>
       </ion-select>
 		</ion-item>
 		<ion-item>
@@ -38,12 +38,12 @@
 	<ion-list *ngIf="type == 'exam'">
 		<ion-list-header color="light-orange" style="font-weight:bold;">Enter exam details</ion-list-header>
 		<ion-item>
-			<ion-input type="text" [(ngModel)]="examName" name="examName" placeholder="Exam name eg. Biology GCSE Exam"></ion-input>
+			<ion-input type="text" [(ngModel)]="examName" name="examName" placeholder="Exam name"></ion-input>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Choose subject: </ion-label>
 			<ion-select [(ngModel)]="subject" name="subject" placeholder="Select subject...">
-				<ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name}}</ion-option>
+				<ion-option *ngFor="let theSubject of subjects" value="{{theSubject.name | uppercase}}">{{theSubject.name | uppercase}}</ion-option>
 			</ion-select>
 		</ion-item>
 		<ion-item>

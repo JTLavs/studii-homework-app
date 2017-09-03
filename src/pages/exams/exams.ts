@@ -12,16 +12,15 @@ import { Service } from '../../app/homework-service';
 export class myexams implements OnInit{
 	exams : Exam[] = [];
 	selectedExam : Exam;
-	todaysDate : Date = new Date();
 
     constructor(public navCtrl: NavController, private theService : Service) {}
-		
-	getAllExams(){
-		return this.theService.getExams().then(exams => this.exams = exams);
-	}
 
 	ngOnInit() : void{
-		this.getAllExams();
+		this.exams = this.getAllExams();
+	}
+	
+	getAllExams(){
+		return this.theService.removeItemsInPast(this.theService.getExams());
 	}
 
     getSubjectImage(subjectName : string){
@@ -31,7 +30,7 @@ export class myexams implements OnInit{
     checkIfExamsExist(){
 	    return (this.exams.length > 0)
     }
-
+	
 	itemTapped(event, work) {
 		this.navCtrl.push(detailPage, { theWork: work });
 	}

@@ -17,7 +17,7 @@ export class detailPage {
 	}
 
 	updateExamStatus(selectedItem:any, topicName : string ) : void{
-		this.theService.updateExamStatus(this.selectedItem, topicName);
+		this.theService.updateTopicStatus(this.selectedItem, topicName);
 	}
 
 	updateHomeworkStatus():void
@@ -27,7 +27,6 @@ export class detailPage {
 		subTitle : `(This will remove the homework)`,
 		buttons: [
 				{ text: 'Yes', handler: () => {
-				this.theService.removeHomework(this.selectedItem)
 				this.events.publish('Homework Deleted', this.selectedItem)
 				this.navCtrl.pop();
 				}

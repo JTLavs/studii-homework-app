@@ -13,8 +13,8 @@ export class Settings {
     imageToSave: string;
 	
     constructor(private theService : Service) {
-        this.profileName = theService.getProfileName()
-        this.profileImage = theService.getProfileImage()
+        theService.getProfileName().then(name => this.profileName  = name);
+        theService.getProfileImage().then(image => this.profileImage = image);
         this.bgColor = "1px solid black";
     }
 

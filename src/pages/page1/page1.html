@@ -21,7 +21,7 @@
 		<ion-list-header color="light-green" class="header">UPCOMING</ion-list-header>
 		<ion-item detail-push *ngFor="let homework of upcomingHomeworks" (click)="itemTapped($event, homework)">
 			<ion-avatar item-left>
-				<img [src]="getHomeworkImage(homework.subject)">
+				<img [src]="getHomeworkImage(homework.subject)" onerror="img/default.png">
 			</ion-avatar>
 			<p class="details">{{homework.details}}</p>
 			<p class="date">Due on {{homework.date | date: 'dd MMM' }}</p>

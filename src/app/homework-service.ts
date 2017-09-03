@@ -1,37 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Homework, Resource, Subject, Exam, Topics } from './homework';
 import { EXAMS, HOMEWORKS, SUBJECTS, RESOURCES } from './mock-homeworks';
-//import { NativeStorage } from '@ionic-native/native-storage';
+import { ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Service
 {
-    private topic : Topics[];
+    public theSubjectArray : Subject[] = [];
+	public theExamArray : Exam[] = [];
+	public theHomeworkArray : Homework[] = [];
+	
+	private topic : Topics[];
+	private returnedData;
 	private HOMEWORK_KEY : string = "thehomeworks";
 	private EXAM_KEY : string = "theexams";
-	//private SUBJECT_KEY : string = "thesubjects";
+	private SUBJECT_KEY : string = "thesubjects";
 	private DONE_STATUS : string = "Done";
-	private PROFILE_NAME : string = "Stucate"
-	private PROFILE_IMAGE : string = "logo"
 	private todaysDate : Date = new Date();
-	private tomorrowHomeworks : Homework[] = [];
-	private upcomingHomeworks : Homework[] = [];
-		
-	getUpcomingHomeworks() : Homework[]{
-		return this.upcomingHomeworks;
-	}
 	
-	getTomorrowsHomeworks() : Homework[]{
-		return this.tomorrowHomeworks;
+	constructor(private toast: ToastController, public storage : Storage){}
+	
+	showToast(msg){
+	let toast =  this.toast.create({
+      message: msg,
+      duration: 3000,
+      position:'bottom'
+      
+    })
+    toast.present();
+  }
+	
+	getAllHomeworks(){
+		if(this.theHomeworkArray.length == 0 ){
+			this.getWork(this.HOMEWORK_KEY).then(homeworks => this.theHomeworkArray = homeworks);
+		}
+		return this.theHomeworkArray;
 	}
 
-	getProfileName() : string{
-		return this.PROFILE_NAME
-		//for devices - return this.getWork("name")
+	getProfileName(){
+		return this.getWork("name")
 	}
-	getProfileImage() : string{
-		return this.PROFILE_IMAGE
-		//for devices - return this.getWork("image")
+	getProfileImage(){
+		return this.getWork("image")
 	}
 	
 	getResourcesForSubject(subjectName : string) : Resource[]{
@@ -45,51 +56,41 @@ export class Service
 	}
 	
 	setProfileName(theName : string){
-		this.PROFILE_NAME = theName;
-		//this.saveWork("name", name);
+		this.saveWork("name", theName);
 	}
 	setProfileImage(theImage : string){
-		this.PROFILE_IMAGE = theImage;
-		///this.saveWork("image", theImage);
+		this.saveWork("image", theImage);
+	}
+
+	getExams(): Exam[]
+	{
+		if(this.theExamArray.length == 0){
+			this.getWork(this.EXAM_KEY).then(exams => this.theExamArray = exams);
+		}
+		return this.theExamArray;
 	}
 	
-	countHomeworksBySubject(subjectName : string): number {
-		let homeworkSubjectCount = 0;
-		HOMEWORKS.forEach(function(homework) {
-		    if(homework.subject.toLowerCase() == subjectName){
-				homeworkSubjectCount++;
-			}
-		})
-		return homeworkSubjectCount;
-	}
-
-	getExams(): Promise<Exam[]>
+	/**getTopicsOnExams(exam : Exam) : Topics[]
 	{
-		this.removeItemsInPast(EXAMS);
-		return Promise.resolve(EXAMS);
-		//for devices - return this.getWork(this.EXAM_KEY);
+		let index  = this.theExamArray.indexOf(exam);
+		//return this.getExams().then(exams => exams.find(exam => exam === exam).topics);
+		return this.theExamArray[index].topics;
+	}**/
+	
+	updateTopicStatus(exam : Exam, topicName : string){
+		this.topic = exam.topics.filter(topic => topic.topicName == topicName)
+		this.topic[0].status = this.DONE_STATUS
+	    this.saveWork('theexams', this.theExamArray);
 	}
-	getTopicsOnExams(exam : Exam) : Promise<Topics[]>
-	{
-		return this.getExams().then(exams => exams.find(exam => exam === exam).topics);
+	
+	getSubjects(){
+		return Promise.resolve(this.getWork(this.SUBJECT_KEY));
+		//return this.theSubjectArray;
 	}
-	getSubjects(): Subject[]{
-		return SUBJECTS;
-	}
-
-	addScoreToSubject(subject : Subject, score:number){
-		subject.totalPercentageScores = Number(subject.totalPercentageScores) + Number(score)
-		subject.numberOfTests +=1
-	}
-
-	updateTarget(subject : Subject, number : number){
-		subject.target = number
-	}
-
+	
 	removeSubject(subject : Subject){
-		this.deleteSubjectFromOtherItems(this.EXAM_KEY, EXAMS, subject.name)
-		this.deleteSubjectFromOtherItems(this.HOMEWORK_KEY, HOMEWORKS, subject.name)
-		SUBJECTS.splice(SUBJECTS.indexOf(subject),1)
+		this.deleteSubjectFromOtherItems(this.EXAM_KEY, this.theExamArray, subject.name)
+		this.deleteSubjectFromOtherItems(this.HOMEWORK_KEY, this.theHomeworkArray, subject.name)
 	}
 
 	deleteSubjectFromOtherItems(key: string, array : any, name : string){
@@ -99,12 +100,7 @@ export class Service
 				array.splice(i,1)
 			}
 		}
-		//this.saveWork(key, array)
-	}
-
-	removeHomework(theHomework : Homework){
-		HOMEWORKS.splice(HOMEWORKS.indexOf(theHomework), 1)
-		//this.saveWork(key, array)
+		this.saveWork(key, array)
 	}
 	
 	removeItemsInPast(array : any[]){
@@ -114,13 +110,7 @@ export class Service
 				array.splice(i,1);
 			}
 		}
-		//this.saveWork(key, array)	
-	}
-
-	updateExamStatus(exam : Exam, topicName : string){
-		this.topic = exam.topics.filter(topic => topic.topicName == topicName)
-		this.topic[0].status = this.DONE_STATUS
-	    //this.saveWork(this.EXAM_KEY, this.getExams());
+		return array;
 	}
 
 	getSubjectImage(subjectName : string) : string{
@@ -136,61 +126,22 @@ export class Service
 	}
 
 	addHomework(dueDate : string, description : string, subject : string){
-			HOMEWORKS.push({subject : subject, date : dueDate, details : description});
-			//this.saveWork(this.HOMEWORK_KEY, HOMEWORKS);
+		this.theHomeworkArray.push({subject : subject, date : dueDate, details : description});
+		this.saveWork(this.HOMEWORK_KEY, this.theHomeworkArray);
 	}
 	
 	addExam(name : string, subject : string, date: string, topics:Topics[]){
-		EXAMS.push(
-			{ name :name, subject : subject, date : date, topics : topics});
-			//this.saveWork(this.EXAM_KEY, this.getExams());
+		this.theExamArray.push({ name :name, subject : subject, date : date, topics : topics});
+		this.saveWork(this.EXAM_KEY, this.theExamArray);
 	}
 		
-	addAllSubjects(subjects : Subject[]){
-		for (let subject of subjects){
-			this.addSubject(subject.name)
-		}
-	}
-
-	addSubject(subjectName : string){
-		SUBJECTS.push({name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0})
-	}
 
 	saveWork(key : string, arr : any){
-		//this.nativeStorage.setItem(key,arr)
+		this.storage.set(key, arr)
 	}
 
 	getWork(key : string){
-		//this.nativeStorage.getItem(key);
+		return Promise.resolve(this.storage.get(key));
 	}
-	
-    sortHomeworksAndRemovePastHomeworks(){
- 	    let i = HOMEWORKS.length;
-	    while(i--){		
-		    let theHomeworkDate = new Date(HOMEWORKS[i].date);
-			let theHomeworkDay = theHomeworkDate.getDate();
-			let theHomeworkMonth = theHomeworkDate.getMonth();
-			
-		    if(this.checkIfHomeworkTomorrow(this.todaysDate, theHomeworkDay, theHomeworkMonth)){
-			    this.tomorrowHomeworks.push(HOMEWORKS[i])
-		    }
-		    else{
-			    this.upcomingHomeworks.push(HOMEWORKS[i]);
-		    }
-	    }
- 	    this.removeItemsInPast(this.upcomingHomeworks);
-    } 
- 
-    checkIfHomeworkTomorrow(todaysDate, dateOfHomework, monthOfHomework) : boolean{
-	    return this.isHomeworkTomorrowAndSameMonth(todaysDate, dateOfHomework, monthOfHomework) || 
-		this.isHomeworkTomorrowAndLastMonthDay(todaysDate, dateOfHomework)
-	}
-	
-    isHomeworkTomorrowAndLastMonthDay(todaysDate, dateOfHomework) : boolean{
-		return (((todaysDate == 28 && todaysDate.getMonth() == 3) || todaysDate.getDate() == 30 || todaysDate.getDate() == 31) && dateOfHomework == 1)
-    }
-	
-	isHomeworkTomorrowAndSameMonth(todaysDate, dateOfHomework, monthOfHomework) : boolean{
-	    return ((dateOfHomework  - todaysDate.getDate() == 1) && monthOfHomework == todaysDate.getMonth())
-	}
+
 }

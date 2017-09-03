@@ -5,8 +5,7 @@ import { AlertController } from 'ionic-angular'
 
 @Component({
   selector: 'add-item',
-  templateUrl: 'add.html',
-  providers : [Service]
+  templateUrl: 'add.html'
 
 })
 export class AddItem implements OnInit{
@@ -16,16 +15,16 @@ export class AddItem implements OnInit{
 
     private task:string;
     private homeworkDetails : string;
-    private subjects : Subject[];
+    private subjects : Subject[] = [];
 
     private examName:string;
     private theTopics : Topics[] = [];
     private topicName : string;
 
-    constructor(private service : Service, private alertCtrl: AlertController){this.service = service;}
+    constructor(private service : Service, private alertCtrl: AlertController){}
 
     ngOnInit() : void{
-        this.subjects =  this.service.getSubjects();
+        this.service.getSubjects().then(subjects => this.subjects = subjects);
     }
 
     addTopicsForExam(){

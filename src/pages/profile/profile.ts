@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { AlertController } from 'ionic-angular'
 import { Subject } from '../../app/homework';
 import { Service } from '../../app/homework-service';
@@ -8,35 +8,31 @@ import { Service } from '../../app/homework-service';
     selector: 'profile',
     templateUrl: 'profile.html'
 })
-export class Profile implements OnInit{
-    subjects : Subject[];
+export class Profile implements AfterViewInit {
+    subjects : Subject[] = [];
     profileName : string;
     profileImage : string;
     imageSource : string;
+	SUBJECT_KEY : string = 'thesubjects';
 
     constructor(private subjectsService : Service, private alertCtrl : AlertController) {}
 	
-	ngOnInit() : void{
+	ngAfterViewInit() : void{
 		this.getInfo();
-        this.imageSource = "img/"+this.profileImage +".png"
 	}
 
     getInfo() : void{
-        this.subjects = this.subjectsService.getSubjects()
-        this.profileName = this.subjectsService.getProfileName();
-        this.profileImage = this.subjectsService.getProfileImage();
+		this.subjectsService.getSubjects().then(subjects => this.subjects = subjects);
+        this.subjectsService.getProfileName().then(name => this.profileName = name);
+        this.subjectsService.getProfileImage().then(image => this.profileImage = image).then(profileImage => this.imageSource = "img/"+profileImage+".png");
     }
+	
 
     calculateAverage(subject){
 	    if(subject.numberOfTests <= 0){
 		    return subject.numberOfTests.toPrecision(3)
  	    }
         return (subject.totalPercentageScores / subject.numberOfTests).toPrecision(3)
-    }
-  
-    getNumberOfHomeworks(subjectName){
-		console.log(this.subjectsService.countHomeworksBySubject(subjectName))
-	    return this.subjectsService.countHomeworksBySubject(subjectName);
     }
   
     getSubjectImage(subject){
@@ -61,7 +57,9 @@ export class Profile implements OnInit{
 			buttons: [
 			  { text: 'Add', handler: data => {
 				  if(this.isNumberValid(data.score)){
-					   this.subjectsService.addScoreToSubject(subject, data.score)
+					   subject.totalPercentageScores = Number(subject.totalPercentageScores) + Number(data.score)
+					   subject.numberOfTests +=1;
+					   this.subjectsService.saveWork(this.SUBJECT_KEY, this.subjects);
 					   this.showOKAlert('Score Added', data.score +'% added to '+subject.name)
 					}
 					else{
@@ -96,8 +94,10 @@ export class Profile implements OnInit{
             title: `Are you sure you want to remove `+subjectName + `?`,
             subTitle : `(This will also remove classes, exams and homeworks for this subject)`,
             buttons: [{ text: 'Yes', handler: () => {
-			              this.subjectsService.removeSubject(subject)
-                          this.showOKAlert('Subject Removed', subjectName + ' has been removed along with any classes, homeworks and exams.')}
+							this.subjects.splice(this.subjects.indexOf(subject),1)
+							this.subjectsService.saveWork(this.SUBJECT_KEY, this.subjects);
+							this.subjectsService.removeSubject(subject);
+							this.showOKAlert('Subject Removed', subjectName + ' has been removed along with any classes, homeworks and exams.')}
 					  }, 
 					  { text: 'No', role: 'cancel'}
 					],
@@ -112,7 +112,7 @@ export class Profile implements OnInit{
             title: 'Add a new subject',
             inputs: [{ name: 'subjectName', placeholder: 'Subject' }],
             buttons: [{ text: 'Add', handler: data => {
-                 this.subjectsService.addSubject(data.subjectName.toLowerCase())
+                 this.addSubject(data.subjectName.toLowerCase())
                  this.showOKAlert('Subject Added', data.subjectName + ' has been added to your subjects.')}
                 }, 
 			    { text: 'Cancel', role: 'cancel'}
@@ -136,11 +136,26 @@ export class Profile implements OnInit{
     updateTarget(subject : Subject, newTarget : number){
 	    var oldTarget = subject.target
 	    if(this.isNumberValid(newTarget)){
-			this.subjectsService.updateTarget(subject, newTarget)
+			subject.target = newTarget;
+			this.subjectsService.saveWork(this.SUBJECT_KEY, this.subjects);
 			this.showOKAlert('Target updated', 'You updated '+subject.name+ ' target from '+oldTarget +' % to '+newTarget+'%')
 		}
 		else{
 		    this.showOKAlert('Error', 'You must enter a number between 0 and 100');
 		}	
 	}
+	
+	addSubject(subjectName : string){
+		this.subjects.push({name : subjectName, totalPercentageScores : 0, numberOfTests : 0, target : 0})
+		this.subjectsService.saveWork(this.SUBJECT_KEY, this.subjects)
+	}
+	
+	/**addScoreToSubject(subject : Subject, score:number){
+		subject.totalPercentageScores = Number(subject.totalPercentageScores) + Number(score)
+		subject.numberOfTests +=1;
+		this.subjectsService.saveWork(this.SUBJECT_KEY, this.subjects);
+	}**/
+	/**updateTarget(subject : Subject, number : number){
+		subject.target = number;	
+	}**/
 }

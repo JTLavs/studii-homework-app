@@ -1,52 +1,59 @@
 <ion-content style="text-align:center;background-color:none">
-	<div style="width:100%;margin-top:30px;">
+	<div style="width:100%;margin-top:15px;">
 		<div>
-			<h1 ion-text style="font-size:32px;font-family:Permanent Marker; text-shadow: 1px 1px 2px black;" color="orange">stucate</h1>
 			<img src="img/logo.png" style="margin:0 auto;" height="100px" width="100px"/>
-			<h6 style="margin-top:10px;">Setup 1 of 2<br> Name & Avatar</h6>
+			<h5 style="margin-top:10px;">Setup 1 of 2<br> Name & Avatar</h5>
 		</div>
 		<div style="text-align:center;margin:0 auto;margin-top:30px;">
-			<ion-input style="font-size:20px;border:none;border-bottom:1px dashed gray; border-top:1px dashed gray;padding:10px;width:100%;"
+			<ion-input style="font-size:20px;border:none;border-bottom:1px dashed #f0f0f0; border-top:1px dashed #f0f0f0;padding:10px;width:100%;margin-bottom:0px;"
 				[(ngModel)]="profileName" name="profileName" placeholder="Enter your name">
 			</ion-input>
 		</div>
-		<ion-list radio-group [(ngModel)]="profileImage" style="width:100%;">
-			<p ion-text style="text-align:left;padding-left:20px;" >Select Avatar: </p>
-			<ion-scroll scrollY="true" style="margin:0 auto;height:200px;">
+		<ion-list radio-group [(ngModel)]="profileImage" style="width:100%;border-top:1px dashed #f1f1f1;border-bottom:1px dashed #f1f1f1;">
+			<ion-scroll scrollY="true" style="height:30vh;margin-top:0px;">
 				<ion-item no-lines>
-					<ion-avatar item-left> <img src="img/logo.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/logo.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="logo"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarBoy.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarBoy.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarBoy"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarGirl.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarGirl.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarGirl"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarGirl1.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarGirl1.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarGirl1"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarBoy1.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarBoy1.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarBoy1"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarFootball.png"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarFootball.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarFootball"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarFlower.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarFlower.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarFlower"></ion-radio>
 				</ion-item>
 				<ion-item no-lines>
-					<ion-avatar item-left><img src="img/avatarGame.png" height="50px" width="50px"/></ion-avatar>
+					<ion-avatar item-left><img src="img/avatarGame.png" height="64px" width="64px"/></ion-avatar>
 					<ion-radio value="avatarGame"></ion-radio>
+				</ion-item>
+				<ion-item no-lines>
+					<ion-avatar item-left><img src="img/penny.png" height="64px" width="64px"/></ion-avatar>
+					<ion-radio value="penny"></ion-radio>
+				</ion-item>
+				<ion-item no-lines>
+					<ion-avatar item-left><img src="img/cat.png" height="64px" width="64px"/></ion-avatar>
+					<ion-radio value="cat"></ion-radio>
 				</ion-item>
 			</ion-scroll>
 		</ion-list>
+		<p style="font-size:12px;">You can edit your name and avatar on the settings page.</p>
 		<button [disabled]="!checkValid()" (click)="nextStep()" ion-button color="orange" style="margin-top:15px;margin-bottom:15px;"> Next</button>
 	</div>
 </ion-content>

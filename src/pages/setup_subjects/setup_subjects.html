@@ -1,27 +1,26 @@
-<ion-content  style="text-align:center;background-color:none">
-	<div style="width:100%;margin-top:30px;">
-			<h1 ion-text style="font-size:32px;font-family:Permanent Marker; text-shadow: 1px 1px 2px black;" color="orange">stucate</h1>
-			<img src="img/logo.png" style="margin:0 auto;" height="100px" width="100px"/>
-		<h6 style="margin-top:15px;">Setup 2 of 2<br>Subjects</h6>
-		<ion-grid style="text-align:center;margin:0 auto;border-bottom:1px dashed orange;border-top:1px dashed orange;">
+<ion-content  style="text-align:center;background-color:none" overflow-scroll="false">
+	<div style="width:100%;margin-top:15px;">
+		<img src="img/logo.png" style="margin:0 auto;" height="100px" width="100px"/>
+		<h6 style="margin-top:10px;">Setup 2 of 2<br>Subjects</h6>
+		<ion-grid style="text-align:center;margin:0 auto;border-bottom:1px dashed #f1f1f1;border-top:1px dashed #f1f1f1;margin-top:30px;">
 			<ion-row>
 				<ion-col col-9 style="position:initial;padding:0;">
 					<ion-input style="font-size:16px;border:none;padding-left:10px;" [(ngModel)]="subjectName" name="subjectName" placeholder="Enter subject"></ion-input>
 				</ion-col>
 				<ion-col col-3 style="position:initial;">
-					<button ion-button small [disabled]="isAddDisabled()" (click)="addSubject()" style="padding:10px;">
+					<button ion-button small [disabled]="isAddDisabled()" (click)="addSubject()" color="orange" style="padding:10px;">
 						<ion-icon name="add"></ion-icon>
 					</button>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
-      <div style="text-align:left;margin:0 auto;margin-top:30px;margin-left:10px;">
+      <div style="text-align:center;margin:0 auto;margin-top:30px;margin-left:10px;">
 			<h4 *ngIf="isFinishDisabled()">No subjects added.</h4>
 			<ion-item *ngFor="let subject of subjects" color="light">
 				<h5>{{ subject.name | uppercase}}</h5>
 				<span style="font-size:18px;" item-right (click)="removeSubject(subject)"><ion-icon name="trash"></ion-icon></span>
 			</ion-item>
-			<p style="font-size:12px;" *ngIf="!isFinishDisabled()">You can edit your subjects on the profile page.</p>
+			<p style="font-size:12px;">You can edit your subjects on the profile page.</p>
       </div>
 	  <div style="text-align:center">
 			<button (click)="nextStep()" [disabled]="isFinishDisabled()" ion-button color="orange" style="margin-top:10px;margin-bottom:0px;">Finish</button>

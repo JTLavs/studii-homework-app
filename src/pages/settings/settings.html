@@ -6,7 +6,6 @@
     <ion-title>Settings</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
     <ion-item no-lines>
         <ion-label stacked>Your name: </ion-label>
@@ -14,64 +13,40 @@
     </ion-item>
     <ion-list radio-group [(ngModel)]="profileImage" style="width:100%;">
         <ion-list-header color="light">Select Avatar : </ion-list-header>
-        <ion-grid>
-            <ion-row>
-                <ion-col>
-                    <ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarBoy.png"/></ion-avatar>
-						<ion-radio value="avatarBoy"></ion-radio>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarGirl.png"/></ion-avatar>
-						<ion-radio value="avatarGirl"></ion-radio>
-					</ion-item>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/logo.png"/></ion-avatar>
-						<ion-radio value="logo"></ion-radio>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarBoy1.png"/></ion-avatar>
-						<ion-radio value="avatarBoy1"></ion-radio>
-					</ion-item>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarGirl1.png"/></ion-avatar>
-						<ion-radio value="avatarGirl1"></ion-radio>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarFootball.png"/></ion-avatar>
-						<ion-radio value="avatarFootball"></ion-radio>
-					</ion-item>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarFlower.png"/></ion-avatar>
-						<ion-radio value="avatarFlower"></ion-radio>
-					</ion-item>
-				</ion-col>
-				<ion-col>
-					<ion-item no-lines>
-						<ion-avatar item-left><img src="img/avatarGame.png"/></ion-avatar>
-						<ion-radio value="avatarGame"></ion-radio>
-					</ion-item>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
+		<ion-scroll scrollY="true" style="margin:0 auto;height:30vh">
+			<ion-item no-lines>
+				<ion-avatar item-left> <img src="img/logo.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="logo"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarBoy.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarBoy"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarGirl.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarGirl"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarGirl1.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarGirl1"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarBoy1.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarBoy1"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarFootball.png"/></ion-avatar>
+				<ion-radio value="avatarFootball"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarFlower.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarFlower"></ion-radio>
+			</ion-item>
+			<ion-item no-lines>
+				<ion-avatar item-left><img src="img/avatarGame.png" height="50px" width="50px"/></ion-avatar>
+				<ion-radio value="avatarGame"></ion-radio>
+			</ion-item>
+		</ion-scroll>
 	</ion-list>
 	<ion-item no-lines class="button-holder">
 		<button ion-button block color="green" (click)="saveSettings()" style="padding:20px;">Save Changes</button><br>

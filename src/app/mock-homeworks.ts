@@ -43,11 +43,4 @@ export const RESOURCES : Resource[] = [
 			links : [{website : "iwm.org.uk", "href" : "http://www.iwm.org.uk/history/how-alan-turing-cracked-the-enigma-code", "title" : "Alan Turing & the Enigma"}]}
 ]
 
-export const SUBJECTS: Subject[] = [
-	{"name" : "physics", "totalPercentageScores" : 83, "numberOfTests" : 4, "target" : 60},
-	{"name" : "maths", "totalPercentageScores" : 120, "numberOfTests" : 2, "target" : 80},
-	{"name" : "english", "totalPercentageScores" : 180, "numberOfTests" : 2, "target" : 75},
-	{"name" : "history", "totalPercentageScores" : 60, "numberOfTests" : 1, "target" : 68},
-	{"name" : "computing", "totalPercentageScores" : 200, "numberOfTests" : 2, "target" : 90},
-	{"name" : "chemistry", "totalPercentageScores" : 200, "numberOfTests" : 2, "target" : 90}
-];
+export const SUBJECTS: Subject[] = [];
